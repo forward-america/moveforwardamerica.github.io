@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Forward America - Policy Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3d4e7a 0%, #c23b22 100%);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro {
+            background: rgba(26, 39, 68, 0.6);
+            border: 2px solid #3d4e7a;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #c23b22;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .policy-card {
+            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
+            border: 2px solid #3d4e7a;
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3d4e7a 0%, #c23b22 100%);
+        }
+
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(194, 59, 34, 0.3);
+            border-color: #c23b22;
+        }
+
+        .policy-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .policy-card h3 {
+            color: #ffffff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .policy-card .subtitle {
+            color: #c23b22;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .policy-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .policy-highlights {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .policy-highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .policy-highlights li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .policy-highlights li:last-child {
+            border-bottom: none;
+        }
+
+        .policy-highlights li::before {
+            content: '▸ ';
+            color: #c23b22;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #c23b22 0%, #a02f1a 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .view-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(194, 59, 34, 0.4);
+        }
+
+        .philosophy {
+            background: rgba(26, 39, 68, 0.6);
+            border: 2px solid #3d4e7a;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 60px 0 40px 0;
+        }
+
+        .philosophy h2 {
+            color: #c23b22;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .philosophy-item {
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #c23b22;
+        }
+
+        .philosophy-item h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .philosophy-item p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: rgba(0,0,0,0.4);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 2px solid #3d4e7a;
+        }
+
+        .footer p {
+            color: #b0b0b0;
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #c23b22;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .policies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .policy-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MOVE FORWARD AMERICA</h1>
+        <p>A New Vision for American Renewal</p>
+        <p class="tagline">Market-Based Solutions. Original Principles. State Empowerment.</p>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Rebuilding the American Dream</h2>
+            <p>Five comprehensive policy proposals designed to restore opportunity, security, and prosperity for all Americans through market-oriented, federalist solutions.</p>
+            <p><strong>Not ideology. Not partisanship. Just practical reforms that work.</strong></p>
+        </div>
+
+        <div class="policies-grid">
+            <!-- American Health Security Act -->
+            <div class="policy-card">
+                <div class="policy-icon">🏥</div>
+                <h3>American Health Security Act</h3>
+                <div class="subtitle">Healthcare Security Without Healthcare Socialism</div>
+                <p>A three-layer protection system that eliminates medical bankruptcy while preserving private healthcare delivery and provider choice.</p>
+                
+                <div class="policy-highlights">
+                    <ul>
+                        <li>$1,200 cash + $2,000 HSA immediately</li>
+                        <li>Age-based maximum out-of-pocket ($5K-$25K)</li>
+                        <li>100% catastrophic coverage above maximum</li>
+                        <li>$430B federal savings annually</li>
+                        <li>Complete job mobility</li>
+                    </ul>
+                </div>
+                
+                <a href="ahsa_interactive.html" class="view-button">View Full Proposal</a>
+            </div>
+
+            <!-- American Opportunity Act -->
+            <div class="policy-card">
+                <div class="policy-icon">🎓</div>
+                <h3>American Opportunity Act</h3>
+                <div class="subtitle">Investing in People, Families, and Future</div>
+                <p>From birth through retirement, every American gets real opportunity through strategic investment in human capital.</p>
+                
+                <div class="policy-highlights">
+                    <ul>
+                        <li>$100K+ by age 20 via Opportunity Accounts</li>
+                        <li>$10K grant when your baby is born</li>
+                        <li>Monthly $150K Second Chance lottery</li>
+                        <li>Free or debt-free National Universities</li>
+                        <li>Breaking the cycle of hereditary poverty</li>
+                    </ul>
+                </div>
+                
+                <a href="aoa_interactive.html" class="view-button">View Full Proposal</a>
+            </div>
+
+            <!-- American Prosperity Act -->
+            <div class="policy-card">
+                <div class="policy-icon">💰</div>
+                <h3>American Prosperity Act</h3>
+                <div class="subtitle">Tax Reform That Works for Everyone</div>
+                <p>Replace 75,000 pages of complexity with simple, fair rates. Small businesses thrive. Wall Street speculation crushed.</p>
+                
+                <div class="policy-highlights">
+                    <ul>
+                        <li>15% flat tax for 99% of Americans</li>
+                        <li>File taxes in 5 minutes (no accountant needed)</li>
+                        <li>Small businesses pay 0-5% effective rate</li>
+                        <li>2.5-5% Wall Street transaction tax</li>
+                        <li>Most generous retirement regime ever</li>
+                    </ul>
+                </div>
+                
+                <a href="apa-interactive.html" class="view-button">View Full Proposal</a>
+            </div>
+
+            <!-- American Homestead Act 2.0 -->
+            <div class="policy-card">
+                <div class="policy-icon">🏡</div>
+                <h3>American Homestead Act 2.0</h3>
+                <div class="subtitle">Building Communities, Restoring Homeownership</div>
+                <p>Strategic assistance in new communities + tax reforms that level the playing field against Wall Street investors.</p>
+                
+                <div class="policy-highlights">
+                    <ul>
+                        <li>Up to $65K smart assistance (equity + grant)</li>
+                        <li>10-15M new homes in university towns</li>
+                        <li>Eliminates Wall Street tax advantages</li>
+                        <li>Prevents price inflation via supply</li>
+                        <li>Restores under-40 homeownership to 52-55%</li>
+                    </ul>
+                </div>
+                
+                <a href="homestead-interactive.html" class="view-button">View Full Proposal</a>
+            </div>
+
+            <!-- Coming Soon Cards -->
+            <div class="policy-card" style="opacity: 0.7;">
+                <div class="policy-icon">⚖️</div>
+                <h3>Constitutional Reforms</h3>
+                <div class="subtitle">Restoring Balance and Accountability</div>
+                <p>Structural reforms to restore federalism, limit federal overreach, and ensure government accountability.</p>
+                
+                <div class="policy-highlights">
+                    <ul>
+                        <li>State sovereignty protections</li>
+                        <li>Federal spending limits</li>
+                        <li>Regulatory reform framework</li>
+                        <li>Electoral system improvements</li>
+                    </ul>
+                </div>
+                
+                <button class="view-button" style="opacity: 0.6; cursor: not-allowed;" disabled>Coming Soon</button>
+            </div>
+        </div>
+
+        <div class="philosophy">
+            <h2>Our Philosophy</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <h3>🎯 Market-Oriented</h3>
+                    <p>We believe in competitive markets, price signals, and private enterprise. Government sets rules and provides safety nets, not central planning.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <h3>🏛️ Federalist</h3>
+                    <p>States should have wide latitude to experiment with their own solutions. Federal government handles what states cannot: defense, interstate commerce, safety nets.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <h3>🔧 Pragmatic</h3>
+                    <p>We prioritize what works over ideology. Evidence-based policy. Willing to change course when data shows better approaches.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <h3>🌉 Post-Partisan</h3>
+                    <p>Not left. Not right. Forward. We support candidates across parties based on their commitment to these principles and local preferences.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <h3>📈 Pro-Growth</h3>
+                    <p>Economic growth lifts everyone. We remove barriers to entrepreneurship, innovation, and job creation while ensuring fair competition.</p>
+                </div>
+                
+                <div class="philosophy-item">
+                    <h3>🤝 Opportunity-Focused</h3>
+                    <p>Every American deserves a real shot at prosperity. Strategic investments in people, from birth through retirement, break the cycle of poverty.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Move Forward America</strong></p>
+        <p>A national advocacy organization for the Age of American Renewal</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">These proposals are works in progress. We welcome feedback, critique, and improvement.</p>
+    </div>
+</body>
+</html>

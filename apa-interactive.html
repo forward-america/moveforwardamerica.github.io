@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The American Prosperity Act</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #1a1a1a;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-width: 1200px;
+            width: 100%;
+            overflow: hidden;
+            border: 2px solid #2a2a2a;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3d4e7a 0%, #c23b22 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '>>>>';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            opacity: 0.3;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .org-branding {
+            margin-top: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .navigation {
+            display: flex;
+            background: #000000;
+            border-bottom: 2px solid #2a2a2a;
+            overflow-x: auto;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #ffffff;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: #1a1a1a;
+            color: #c23b22;
+        }
+
+        .nav-btn.active {
+            background: #1a1a1a;
+            color: #c23b22;
+            border-bottom: 3px solid #c23b22;
+        }
+
+        .content {
+            padding: 40px;
+            min-height: 500px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .benefit-card {
+            background: #1a2744;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(26, 39, 68, 0.5);
+            border: 2px solid #3d4e7a;
+        }
+
+        .benefit-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .benefit-card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: #2a2a2a;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 2px solid #444444;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #c23b22;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #ffffff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: #0a0a0a;
+        }
+
+        .comparison-table th {
+            background: #2a2a2a;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #c23b22;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #2a2a2a;
+            color: #ffffff;
+        }
+
+        .comparison-table tr:hover {
+            background: #222222;
+        }
+
+        .highlight {
+            background: #1a2744;
+            padding: 20px;
+            border-left: 5px solid #c23b22;
+            border-radius: 5px;
+            margin: 20px 0;
+            color: #ffffff;
+            border: 2px solid #3d4e7a;
+        }
+        
+        .highlight strong {
+            color: #ffffff;
+        }
+
+        .calculator {
+            background: #0a0a0a;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #2a2a2a;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .input-group label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .input-group input, .input-group select {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: 2px solid #444444;
+            border-radius: 8px;
+            width: 200px;
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .result {
+            background: #2a2a2a;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #c23b22;
+        }
+
+        .result h4 {
+            color: #c23b22;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        h2, h3 {
+            color: #ffffff;
+        }
+        
+        h2 {
+            border-bottom: 3px solid #c23b22;
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #3d4e7a 0%, #c23b22 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .nav-btn {
+                font-size: 0.9em;
+                padding: 15px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>The American Prosperity Act</h1>
+            <p>Tax Reform That Works for Everyone</p>
+            <div class="org-branding">MOVE FORWARD AMERICA</div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection(0)">Overview</button>
+            <button class="nav-btn" onclick="showSection(1)">Your Taxes</button>
+            <button class="nav-btn" onclick="showSection(2)">Small Business</button>
+            <button class="nav-btn" onclick="showSection(3)">Wall Street</button>
+            <button class="nav-btn" onclick="showSection(4)">Retirement</button>
+            <button class="nav-btn" onclick="showSection(5)">Compare</button>
+        </div>
+
+        <div class="content">
+            <!-- Section 0: Overview -->
+            <div class="section active">
+                <h2 style="margin-bottom: 20px;">What You Get</h2>
+                
+                <div class="benefit-card">
+                    <h3>15% Flat Tax</h3>
+                    <p>Simple, clear rate for 99% of Americans. No more complex brackets.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>File in 5 Minutes</h3>
+                    <p>No accountant needed. Simple deductions you can calculate yourself.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Small Business Boom</h3>
+                    <p>Businesses with fewer than 50 employees pay 0-5% effective rate</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">75,000</div>
+                        <div class="stat-label">Pages of Tax Code ELIMINATED</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$600B</div>
+                        <div class="stat-label">Freed for Wages & Innovation</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$3,800</div>
+                        <div class="stat-label">Average Wage Increase</div>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <strong>Bottom Line:</strong> Replace 75,000 pages of complexity with simple rates. Small businesses pay almost nothing. Wall Street speculation gets crushed. Your wages go up. Revenue neutral to positive.
+                </div>
+            </div>
+
+            <!-- Section 1: Your Personal Taxes -->
+            <div class="section">
+                <h2 style="margin-bottom: 20px;">Calculate Your Personal Taxes</h2>
+                
+                <div class="calculator">
+                    <h3 style="margin-bottom: 20px;">Your Tax Calculator</h3>
+                    
+                    <div class="input-group">
+                        <label for="income">Annual Income:</label>
+                        <input type="number" id="income" value="80000" oninput="calculatePersonalTax()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="children">Number of Children:</label>
+                        <input type="number" id="children" min="0" max="3" value="2" oninput="calculatePersonalTax()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="retirement">Retirement Contributions:</label>
+                        <input type="number" id="retirement" value="15000" oninput="calculatePersonalTax()">
+                    </div>
+
+                    <div id="personalResult" class="result"></div>
+                </div>
+
+                <h3 style="margin-top: 40px;">Standard Deductions (No Itemization!)</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Deduction Type</th>
+                        <th>Amount</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Children</strong></td>
+                        <td><strong>$5,000 each</strong></td>
+                        <td>Maximum 3 children ($15,000 total)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Healthcare</strong></td>
+                        <td><strong>$10,000</strong></td>
+                        <td>Covers health expenses and AHSA contributions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retirement</strong></td>
+                        <td><strong>$25,000</strong></td>
+                        <td>Contributions to qualified retirement accounts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Education</strong></td>
+                        <td><strong>$10,000</strong></td>
+                        <td>Education savings accounts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Opportunity</strong></td>
+                        <td><strong>$15,000</strong></td>
+                        <td>For those earning ≤80% median wage (~$42k)</td>
+                    </tr>
+                </table>
+
+                <div class="highlight">
+                    <strong>Maximum Deductions: $75,000</strong> - Simple, universal, no phase-outs, no complexity. Everyone gets the same clear rules.
+                </div>
+            </div>
+
+            <!-- Section 2: Small Business Revolution -->
+            <div class="section">
+                <h2 style="margin-bottom: 20px;">Small Business Calculator</h2>
+                
+                <div class="calculator">
+                    <h3 style="margin-bottom: 20px;">Calculate Your Business Tax</h3>
+                    
+                    <div class="input-group">
+                        <label for="employees">Number of Employees:</label>
+                        <input type="number" id="employees" value="20" oninput="calculateBusinessTax()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="profit">Gross Profit:</label>
+                        <input type="number" id="profit" value="500000" oninput="calculateBusinessTax()">
+                    </div>
+
+                    <div id="businessResult" class="result"></div>
+                </div>
+
+                <h3 style="margin-top: 40px;">Per-Employee Deductions</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Company Size</th>
+                        <th>Wage Deduction</th>
+                        <th>Retirement</th>
+                        <th>Healthcare</th>
+                        <th>Total Per Employee</th>
+                    </tr>
+                    <tr style="background: #1a2744;">
+                        <td><strong>&lt;50 employees</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$22,500</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>50-500 employees</strong></td>
+                        <td><strong>$5,000</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$20,000</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>&gt;500 employees</strong></td>
+                        <td><strong>$2,500</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$7,500</strong></td>
+                        <td><strong>$17,500</strong></td>
+                    </tr>
+                </table>
+
+                <div class="stats-grid" style="margin-top: 30px;">
+                    <div class="stat-card">
+                        <div class="stat-number">0-5%</div>
+                        <div class="stat-label">Small Business Tax Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50-100%</div>
+                        <div class="stat-label">Increase in New Businesses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15M+</div>
+                        <div class="stat-label">New Jobs in 5 Years</div>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <strong>Revolutionary Incentive:</strong> Every employee you hire REDUCES your tax burden. Small businesses finally win against megacorporations.
+                </div>
+            </div>
+
+            <!-- Section 3: Wall Street Accountability -->
+            <div class="section">
+                <h2 style="margin-bottom: 20px;">Financial Transaction Taxes</h2>
+                
+                <h3>What Gets Taxed</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Transaction Type</th>
+                        <th>Tax Rate</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock Trades</strong></td>
+                        <td><strong>2.5%</strong></td>
+                        <td>Day trading becomes unprofitable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Derivatives</strong></td>
+                        <td><strong>5.0%</strong></td>
+                        <td>Speculation crushed, hedging continues</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock-Secured Loans</strong></td>
+                        <td><strong>5.0%</strong></td>
+                        <td>Eliminates "buy, borrow, die" tax avoidance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Personal Loans</strong></td>
+                        <td><strong>1.5%</strong></td>
+                        <td>One-time tax on origination</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Corporate Loans</strong></td>
+                        <td><strong>3.0%</strong></td>
+                        <td>Discourages excessive leverage</td>
+                    </tr>
+                </table>
+
+                <div class="calculator" style="margin-top: 30px;">
+                    <h3>Long-Term vs. Day Trading</h3>
+                    
+                    <div class="input-group">
+                        <label for="investment">Investment Amount:</label>
+                        <input type="number" id="investment" value="100000" oninput="calculateTradingImpact()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="trades">Trades per Year:</label>
+                        <input type="number" id="trades" value="50" oninput="calculateTradingImpact()">
+                    </div>
+
+                    <div id="tradingResult" class="result"></div>
+                </div>
+
+                <div class="stats-grid" style="margin-top: 30px;">
+                    <div class="stat-card">
+                        <div class="stat-number">$2.3T</div>
+                        <div class="stat-label">Annual Revenue from Speculation Tax</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">40-50%</div>
+                        <div class="stat-label">Reduction in Trading Volume</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0%</div>
+                        <div class="stat-label">Impact on Long-Term Investors</div>
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <strong>The Goal:</strong> Make speculation expensive and long-term investment cheap. High-frequency trading becomes impossible.
+                </div>
+            </div>
+
+            <!-- Section 4: Retirement Security -->
+            <div class="section">
+                <h2 style="margin-bottom: 20px;">Retirement Protection</h2>
+                
+                <div class="benefit-card">
+                    <h3>Most Generous Retirement Regime in History</h3>
+                    <p>Contributions deductible. Growth tax-free. Trades exempt from transaction tax. Withdrawals taxed at only 5%.</p>
+                </div>
+
+                <div class="calculator">
+                    <h3>Your Retirement Projection</h3>
+                    
+                    <div class="input-group">
+                        <label for="retAge">Your Age:</label>
+                        <input type="number" id="retAge" value="35" oninput="calculateRetirement()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="retContrib">Annual Contribution:</label>
+                        <input type="number" id="retContrib" value="25000" oninput="calculateRetirement()">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="retMatch">Employer Match:</label>
+                        <input type="number" id="retMatch" value="7500" oninput="calculateRetirement()">
+                    </div>
+
+                    <div id="retirementResult" class="result"></div>
+                </div>
+
+                <h3 style="margin-top: 40px;">Tax Treatment Comparison</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Stage</th>
+                        <th>Current System</th>
+                        <th>American Prosperity Act</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Contribution</strong></td>
+                        <td>Tax deferred (some limits)</td>
+                        <td>$25,000 fully deductible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Growth</strong></td>
+                        <td>Tax deferred</td>
+                        <td>100% tax-free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transactions</strong></td>
+                        <td>No tax</td>
+                        <td>Exempt from 2.5% transaction tax</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Withdrawal</strong></td>
+                        <td>15-25% (as ordinary income)</td>
+                        <td>5% retirement tax only</td>
+                    </tr>
+                </table>
+
+                <div class="highlight">
+                    <strong>The Math:</strong> Contribute $32,500 annually for 30 years. At 7% return, you'll have ~$3.1 million. Pay only 5% tax on withdrawals instead of 15-25%.
+                </div>
+            </div>
+
+            <!-- Section 5: Comparison -->
+            <div class="section">
+                <h2 style="margin-bottom: 20px;">Current System vs. American Prosperity Act</h2>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Current System</th>
+                        <th>American Prosperity Act</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Tax Code Complexity</strong></td>
+                        <td>75,000 pages</td>
+                        <td>Simple rates, ~1 page</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Personal Tax Rate</strong></td>
+                        <td>10-37% (complex brackets)</td>
+                        <td>15% flat (25% above $1M)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Small Business Rate</strong></td>
+                        <td>21-24% effective</td>
+                        <td>0-5% effective (&lt;50 employees)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ultra-Wealthy Rate</strong></td>
+                        <td>8% effective (avoidance schemes)</td>
+                        <td>18-25% (unavoidable transaction taxes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wall Street Speculation</strong></td>
+                        <td>Untaxed</td>
+                        <td>2.5-5% transaction tax</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Filing Time</strong></td>
+                        <td>Hours (accountant needed)</td>
+                        <td>5 minutes (simple math)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retirement Tax</strong></td>
+                        <td>15-25% on withdrawal</td>
+                        <td>5% on withdrawal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Revenue</strong></td>
+                        <td>$4.9 trillion</td>
+                        <td>$4.5-5.3 trillion (neutral to positive)</td>
+                    </tr>
+                </table>
+
+                <div class="stats-grid" style="margin-top: 40px;">
+                    <div class="stat-card">
+                        <div class="stat-number">$430B</div>
+                        <div class="stat-label">Federal Savings (with AHSA)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$600B</div>
+                        <div class="stat-label">Freed for Wages & Investment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15-25M</div>
+                        <div class="stat-label">New Jobs in 5 Years</div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Tax Reform That Actually Works</h3>
+                    <p style="font-size: 1.2em; margin: 20px 0;">Simple rates. Small businesses thrive. Wall Street pays. Working families win. Revenue neutral.</p>
+                    <p style="font-size: 1.1em; opacity: 0.9;">This is economic freedom through smart design.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(index) {
+            const sections = document.querySelectorAll('.section');
+            const buttons = document.querySelectorAll('.nav-btn');
+            
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            sections[index].classList.add('active');
+            buttons[index].classList.add('active');
+        }
+
+        function calculatePersonalTax() {
+            const income = parseInt(document.getElementById('income').value) || 0;
+            const children = Math.min(parseInt(document.getElementById('children').value) || 0, 3);
+            const retirement = parseInt(document.getElementById('retirement').value) || 0;
+            
+            const childDeduction = children * 5000;
+            const healthcareDeduction = 10000;
+            const retirementDeduction = Math.min(retirement, 25000);
+            const educationDeduction = 10000;
+            const opportunityDeduction = income <= 42000 ? 15000 : 0;
+            
+            const totalDeductions = childDeduction + healthcareDeduction + retirementDeduction + educationDeduction + opportunityDeduction;
+            const taxableIncome = Math.max(0, income - totalDeductions);
+            
+            let tax;
+            if (taxableIncome <= 1000000) {
+                tax = taxableIncome * 0.15;
+            } else {
+                tax = 1000000 * 0.15 + (taxableIncome - 1000000) * 0.25;
+            }
+            
+            const effectiveRate = income > 0 ? (tax / income * 100).toFixed(2) : 0;
+            
+            document.getElementById('personalResult').innerHTML = `
+                <h4>Your Tax Summary</h4>
+                <div style="margin: 15px 0;">
+                    <div><strong>Income:</strong> $${income.toLocaleString()}</div>
+                    <div style="margin-top: 10px;"><strong>Deductions:</strong></div>
+                    <div style="margin-left: 20px;">
+                        ${children > 0 ? `<div>Children (${children}): $${childDeduction.toLocaleString()}</div>` : ''}
+                        <div>Healthcare: $${healthcareDeduction.toLocaleString()}</div>
+                        <div>Retirement: $${retirementDeduction.toLocaleString()}</div>
+                        <div>Education: $${educationDeduction.toLocaleString()}</div>
+                        ${opportunityDeduction > 0 ? `<div>Opportunity: $${opportunityDeduction.toLocaleString()}</div>` : ''}
+                    </div>
+                    <div style="margin-top: 10px; padding-top: 10px; border-top: 2px solid #444;">
+                        <div><strong>Total Deductions: $${totalDeductions.toLocaleString()}</strong></div>
+                        <div><strong>Taxable Income: $${taxableIncome.toLocaleString()}</strong></div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: #1a2744; border-radius: 8px;">
+                        <div style="font-size: 1.3em;"><strong>Tax Owed: $${Math.round(tax).toLocaleString()}</strong></div>
+                        <div style="margin-top: 5px;"><strong>Effective Rate: ${effectiveRate}%</strong></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateBusinessTax() {
+            const employees = parseInt(document.getElementById('employees').value) || 0;
+            const profit = parseInt(document.getElementById('profit').value) || 0;
+            
+            let wageDeduction, sizeCategory;
+            const retirementDeduction = 7500;
+            const healthcareDeduction = 7500;
+            
+            if (employees < 50) {
+                wageDeduction = 7500;
+                sizeCategory = "Small Business (<50 employees)";
+            } else if (employees <= 500) {
+                wageDeduction = 5000;
+                sizeCategory = "Mid-size Business (50-500 employees)";
+            } else {
+                wageDeduction = 2500;
+                sizeCategory = "Large Corporation (>500 employees)";
+            }
+            
+            const perEmployeeDeduction = wageDeduction + retirementDeduction + healthcareDeduction;
+            const totalDeductions = employees * perEmployeeDeduction;
+            const taxableIncome = Math.max(0, profit - totalDeductions);
+            const tax = taxableIncome * 0.20;
+            const effectiveRate = profit > 0 ? (tax / profit * 100).toFixed(2) : 0;
+            
+            document.getElementById('businessResult').innerHTML = `
+                <h4>Your Business Tax Summary</h4>
+                <div style="margin: 15px 0;">
+                    <div><strong>Company Size:</strong> ${sizeCategory}</div>
+                    <div><strong>Number of Employees:</strong> ${employees}</div>
+                    <div><strong>Gross Profit:</strong> ${profit.toLocaleString()}</div>
+                    <div style="margin-top: 15px;"><strong>Per-Employee Deductions:</strong></div>
+                    <div style="margin-left: 20px;">
+                        <div>Wage Deduction: ${wageDeduction.toLocaleString()}</div>
+                        <div>Retirement Match: ${retirementDeduction.toLocaleString()}</div>
+                        <div>Healthcare: ${healthcareDeduction.toLocaleString()}</div>
+                        <div style="margin-top: 5px; padding-top: 5px; border-top: 1px solid #444;">
+                            <strong>Total per employee: ${perEmployeeDeduction.toLocaleString()}</strong>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; padding-top: 10px; border-top: 2px solid #444;">
+                        <div><strong>Total Deductions: ${totalDeductions.toLocaleString()}</strong></div>
+                        <div><strong>Taxable Income: ${taxableIncome.toLocaleString()}</strong></div>
+                    </div>
+                    <div style="margin-top: 15px; padding: 15px; background: #1a2744; border-radius: 8px;">
+                        <div style="font-size: 1.3em;"><strong>Tax Owed: ${Math.round(tax).toLocaleString()}</strong></div>
+                        <div style="margin-top: 5px;"><strong>Effective Rate: ${effectiveRate}%</strong></div>
+                    </div>
+                    ${effectiveRate < 10 ? `<div style="margin-top: 15px; padding: 15px; background: #1a3d1a; border-radius: 8px;">
+                        <strong>🎉 Amazing! Your effective tax rate is under 10%!</strong><br/>
+                        Every employee you hire makes your business more tax-efficient.
+                    </div>` : ''}
+                </div>
+            `;
+        }
+
+        function calculateTradingImpact() {
+            const investment = parseInt(document.getElementById('investment').value) || 0;
+            const trades = parseInt(document.getElementById('trades').value) || 0;
+            
+            const longTermTax = investment * 0.025 * 2;
+            const longTermAnnual = longTermTax / 10;
+            const activeTax = investment * trades * 0.025;
+            const dayTraderBreakpoint = 40;
+            
+            document.getElementById('tradingResult').innerHTML = `
+                <h4>Transaction Tax Impact</h4>
+                <div style="margin: 15px 0;">
+                    <div><strong>Investment Amount:</strong> ${investment.toLocaleString()}</div>
+                    <div><strong>Trading Frequency:</strong> ${trades} trades per year</div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #1a3d1a; border-radius: 8px;">
+                        <strong>Long-Term Investor Strategy:</strong><br/>
+                        <div style="margin-top: 10px;">Buy once, hold 10 years, sell once</div>
+                        <div>Total tax over 10 years: ${longTermTax.toLocaleString()}</div>
+                        <div><strong>Annual cost: ${Math.round(longTermAnnual).toLocaleString()} (${(longTermAnnual/investment*100).toFixed(2)}% per year)</strong></div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 15px; background: ${trades > dayTraderBreakpoint ? '#3d1a1a' : '#1a2744'}; border-radius: 8px;">
+                        <strong>Your Strategy (${trades} trades/year):</strong><br/>
+                        <div style="margin-top: 10px;">Annual transaction tax: <strong>${activeTax.toLocaleString()}</strong></div>
+                        <div style="margin-top: 5px;">As % of investment: <strong>${(activeTax/investment*100).toFixed(1)}%</strong></div>
+                        ${trades > dayTraderBreakpoint ? `<div style="margin-top: 10px; color: #ff6b6b;"><strong>⚠️ Warning: This level of trading becomes very expensive!</strong></div>` : ''}
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 10px; background: #2a2a2a; border-radius: 5px;">
+                        <strong>The Point:</strong> Long-term investing stays affordable. Speculation becomes expensive. This reorients the market toward patient capital.
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateRetirement() {
+            const age = parseInt(document.getElementById('retAge').value) || 35;
+            const contribution = parseInt(document.getElementById('retContrib').value) || 25000;
+            const match = parseInt(document.getElementById('retMatch').value) || 7500;
+            
+            const yearsToRetirement = Math.max(0, 65 - age);
+            const totalAnnual = contribution + match;
+            const assumedReturn = 0.07;
+            
+            let futureValue = 0;
+            for (let i = 0; i < yearsToRetirement; i++) {
+                futureValue = (futureValue + totalAnnual) * (1 + assumedReturn);
+            }
+            
+            const apaWithdrawalTax = futureValue * 0.05;
+            const currentSystemTax = futureValue * 0.20;
+            const savings = currentSystemTax - apaWithdrawalTax;
+            
+            document.getElementById('retirementResult').innerHTML = `
+                <h4>Your Retirement Projection</h4>
+                <div style="margin: 15px 0;">
+                    <div><strong>Current Age:</strong> ${age}</div>
+                    <div><strong>Years to Retirement:</strong> ${yearsToRetirement}</div>
+                    <div><strong>Annual Contribution:</strong> ${contribution.toLocaleString()}</div>
+                    <div><strong>Employer Match:</strong> ${match.toLocaleString()}</div>
+                    <div><strong>Total Annual:</strong> ${totalAnnual.toLocaleString()}</div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #1a2744; border-radius: 8px;">
+                        <div style="font-size: 1.3em;"><strong>Projected at Age 65: ${Math.round(futureValue).toLocaleString()}</strong></div>
+                        <div style="margin-top: 5px; font-size: 0.9em;">Assuming 7% average annual return</div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <strong>Tax Comparison on Withdrawals:</strong>
+                        <div style="margin-top: 10px; padding: 10px; background: #3d1a1a; border-radius: 5px;">
+                            <strong>Current System (20%):</strong> ${Math.round(currentSystemTax).toLocaleString()}
+                        </div>
+                        <div style="margin-top: 5px; padding: 10px; background: #1a3d1a; border-radius: 5px;">
+                            <strong>American Prosperity Act (5%):</strong> ${Math.round(apaWithdrawalTax).toLocaleString()}
+                        </div>
+                        <div style="margin-top: 5px; padding: 10px; background: #1a2744; border-radius: 5px;">
+                            <strong>YOUR SAVINGS:</strong> ${Math.round(savings).toLocaleString()}
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 10px; background: #2a2a2a; border-radius: 5px;">
+                        <strong>Plus:</strong> All transactions within your retirement account are exempt from the 2.5% securities transaction tax.
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = function() {
+            calculatePersonalTax();
+            calculateBusinessTax();
+            calculateTradingImpact();
+            calculateRetirement();
+        };
+    </script>
+</body>
+</html>
