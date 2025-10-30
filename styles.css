@@ -1,0 +1,629 @@
+/* ================================================
+   MOVE FORWARD AMERICA - SHARED STYLES
+   ================================================ */
+
+/* ================================================
+   CSS VARIABLES
+   ================================================ */
+:root {
+    /* Brand Colors */
+    --color-primary: #3d4e7a;
+    --color-accent: #c23b22;
+    --color-accent-dark: #a02f1a;
+
+    /* Background Colors */
+    --color-bg-primary: #0a0a0a;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-tertiary: #2a2a2a;
+    --color-bg-card: #1a2744;
+    --color-bg-card-alt: #2a3a5a;
+    --color-bg-overlay: rgba(26, 39, 68, 0.6);
+    --color-bg-overlay-dark: rgba(0,0,0,0.3);
+    --color-bg-overlay-darker: rgba(0,0,0,0.4);
+
+    /* Text Colors */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e0e0e0;
+    --color-text-tertiary: #b0b0b0;
+
+    /* Border Colors */
+    --color-border-light: #2a2a2a;
+    --color-border-medium: #444444;
+
+    /* Status Colors */
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --color-warning: #ffc107;
+
+    /* Gradient Colors */
+    --gradient-header: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    --gradient-button: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    --gradient-card: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-card-alt) 100%);
+    --gradient-background: linear-gradient(135deg, var(--color-bg-primary) 0%, #1a1a2e 100%);
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-xxl: 40px;
+
+    /* Border Radius */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 15px;
+    --radius-xl: 20px;
+    --radius-xxl: 25px;
+    --radius-pill: 30px;
+
+    /* Shadows */
+    --shadow-sm: 0 5px 15px rgba(0,0,0,0.3);
+    --shadow-md: 0 10px 30px rgba(26, 39, 68, 0.5);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+    --shadow-accent: 0 5px 20px rgba(194, 59, 34, 0.4);
+    --shadow-accent-lg: 0 15px 40px rgba(194, 59, 34, 0.3);
+
+    /* Transitions */
+    --transition-fast: 0.3s;
+    --transition-medium: 0.5s;
+}
+
+/* ================================================
+   RESET & BASE STYLES
+   ================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--color-bg-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+/* ================================================
+   LAYOUT COMPONENTS
+   ================================================ */
+.container {
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    max-width: 1200px;
+    width: 100%;
+    overflow: hidden;
+    border: 2px solid var(--color-border-light);
+}
+
+.header {
+    background: var(--gradient-header);
+    color: white;
+    padding: var(--spacing-xxl);
+    text-align: center;
+    position: relative;
+}
+
+.header::before {
+    content: '››››';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3em;
+    opacity: 0.3;
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.org-branding {
+    margin-top: var(--spacing-md);
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+}
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+.navigation {
+    display: flex;
+    background: #000000;
+    border-bottom: 2px solid var(--color-border-light);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-btn {
+    flex: 0 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.nav-btn:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-accent);
+}
+
+.nav-btn.active {
+    background: var(--color-bg-secondary);
+    color: var(--color-accent);
+    border-bottom: 3px solid var(--color-accent);
+}
+
+/* ================================================
+   CONTENT SECTIONS
+   ================================================ */
+.content {
+    padding: var(--spacing-xxl);
+    min-height: 500px;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================
+   UI COMPONENTS
+   ================================================ */
+
+/* Benefit Cards */
+.benefit-card {
+    background: var(--color-bg-card);
+    color: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-lg) 0;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--color-primary);
+}
+
+.benefit-card h3 {
+    font-size: 2em;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+}
+
+.benefit-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: white;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.stat-card {
+    background: var(--color-bg-tertiary);
+    padding: 25px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 2px solid var(--color-border-medium);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    font-size: 1.1em;
+    color: var(--color-text-primary);
+}
+
+/* Comparison Tables */
+.comparison-table {
+    width: 100%;
+    margin: var(--spacing-lg) 0;
+    border-collapse: collapse;
+    box-shadow: var(--shadow-sm);
+    background: var(--color-bg-primary);
+    overflow-x: auto;
+    display: block;
+}
+
+.comparison-table table {
+    width: 100%;
+    min-width: 600px;
+}
+
+.comparison-table th {
+    background: var(--color-bg-tertiary);
+    color: white;
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 2px solid var(--color-accent);
+}
+
+.comparison-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border-light);
+    color: var(--color-text-primary);
+}
+
+.comparison-table tr:hover {
+    background: #222222;
+}
+
+/* Highlight Boxes */
+.highlight {
+    background: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-left: 5px solid var(--color-accent);
+    border-radius: var(--radius-sm);
+    margin: var(--spacing-lg) 0;
+    color: var(--color-text-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.highlight strong {
+    color: var(--color-text-primary);
+}
+
+/* Calculator Boxes */
+.calculator-box {
+    background: var(--color-bg-primary);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-lg) 0;
+    border: 2px solid var(--color-border-light);
+}
+
+.input-group {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin: var(--spacing-lg) 0;
+    flex-wrap: wrap;
+}
+
+.input-group label {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.input-group input,
+.input-group select {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 1.2em;
+    border: 2px solid var(--color-border-medium);
+    border-radius: 8px;
+    width: 200px;
+    background: var(--color-bg-tertiary);
+    color: white;
+}
+
+.result,
+.calc-result,
+.age-result {
+    background: var(--color-bg-tertiary);
+    padding: 25px;
+    border-radius: var(--radius-md);
+    margin-top: var(--spacing-lg);
+    border-left: 5px solid var(--color-accent);
+}
+
+.result h4,
+.calc-result h4,
+.age-result h4 {
+    color: var(--color-accent);
+    font-size: 1.5em;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Sliders */
+.slider-container {
+    margin: var(--spacing-xl) 0;
+}
+
+.slider-container label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1em;
+    color: var(--color-text-primary);
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius-sm);
+    background: var(--color-border-medium);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+}
+
+/* Call-to-Action Sections */
+.cta-section {
+    background: var(--gradient-header);
+    color: white;
+    padding: var(--spacing-xxl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.cta-section h3 {
+    font-size: 2em;
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta-button {
+    background: white;
+    color: var(--color-accent);
+    padding: var(--spacing-md) var(--spacing-xxl);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* ================================================
+   TYPOGRAPHY
+   ================================================ */
+h2, h3 {
+    color: var(--color-text-primary);
+}
+
+h2 {
+    border-bottom: 3px solid var(--color-accent);
+    padding-bottom: var(--spacing-sm);
+    display: inline-block;
+}
+
+/* Status Indicators */
+.checkmark {
+    color: var(--color-success);
+    font-size: 1.5em;
+}
+
+.crossmark {
+    color: var(--color-error);
+    font-size: 1.5em;
+}
+
+/* ================================================
+   MOBILE RESPONSIVE STYLES
+   ================================================ */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .container {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .header {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .header p {
+        font-size: 1em;
+    }
+
+    .header::before {
+        display: none;
+    }
+
+    .org-branding {
+        font-size: 1em;
+    }
+
+    .navigation {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .nav-btn {
+        font-size: 0.9em;
+        padding: var(--spacing-md) 12px;
+        min-width: 100px;
+    }
+
+    .content {
+        padding: var(--spacing-lg);
+    }
+
+    .benefit-card {
+        padding: var(--spacing-lg);
+    }
+
+    .benefit-card h3 {
+        font-size: 1.5em;
+    }
+
+    .benefit-card p {
+        font-size: 1em;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .stat-number {
+        font-size: 2em;
+    }
+
+    .stat-label {
+        font-size: 1em;
+    }
+
+    .comparison-table {
+        font-size: 0.9em;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: var(--spacing-sm) 8px;
+    }
+
+    .calculator-box {
+        padding: var(--spacing-lg);
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .input-group input,
+    .input-group select {
+        width: 100%;
+        max-width: 300px;
+        font-size: 1em;
+    }
+
+    .input-group label {
+        font-size: 1em;
+    }
+
+    .result,
+    .calc-result,
+    .age-result {
+        padding: var(--spacing-md);
+        font-size: 0.95em;
+    }
+
+    .result h4,
+    .calc-result h4,
+    .age-result h4 {
+        font-size: 1.2em;
+    }
+
+    .slider-container {
+        margin: var(--spacing-lg) 0;
+    }
+
+    .slider-container label {
+        font-size: 1em;
+    }
+
+    .cta-section {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    .cta-section h3 {
+        font-size: 1.5em;
+    }
+
+    .cta-button {
+        padding: 12px var(--spacing-xl);
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5em;
+    }
+
+    .nav-btn {
+        font-size: 0.85em;
+        padding: 12px var(--spacing-sm);
+        min-width: 90px;
+    }
+
+    .benefit-card h3 {
+        font-size: 1.3em;
+    }
+
+    .stat-number {
+        font-size: 1.8em;
+    }
+
+    .input-group input,
+    .input-group select {
+        font-size: 0.95em;
+    }
+}
