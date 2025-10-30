@@ -141,6 +141,49 @@ body {
     color: white;
 }
 
+/* Home Navigation Component */
+.home-navigation {
+    background: var(--color-bg-primary);
+    border-bottom: 2px solid var(--color-border-light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.home-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gradient-button);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: all var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.home-nav-btn:hover {
+    transform: translateX(-3px);
+    box-shadow: var(--shadow-accent);
+    border-color: var(--color-accent);
+}
+
+.home-nav-btn::before {
+    content: '‹';
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.home-nav-label {
+    color: var(--color-text-tertiary);
+    font-size: 0.9em;
+    margin-left: auto;
+}
+
 /* ================================================
    NAVIGATION
    ================================================ */
