@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The American Prosperity Act</title>
     <style>
+        :root {
+            /* Brand Colors */
+            --color-primary: #3d4e7a;
+            --color-accent: #c23b22;
+            --color-accent-dark: #a02f1a;
+
+            /* Background Colors */
+            --color-bg-primary: #0a0a0a;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-tertiary: #2a2a2a;
+            --color-bg-card: #1a2744;
+            --color-bg-card-alt: #2a3a5a;
+            --color-bg-overlay: rgba(26, 39, 68, 0.6);
+            --color-bg-overlay-dark: rgba(0,0,0,0.3);
+            --color-bg-overlay-darker: rgba(0,0,0,0.4);
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0e0;
+            --color-text-tertiary: #b0b0b0;
+
+            /* Border Colors */
+            --color-border-light: #2a2a2a;
+            --color-border-medium: #444444;
+
+            /* Status Colors */
+            --color-success: #28a745;
+            --color-error: #dc3545;
+            --color-warning: #ffc107;
+
+            /* Gradient Colors */
+            --gradient-header: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-button: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-card: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-card-alt) 100%);
+            --gradient-background: linear-gradient(135deg, var(--color-bg-primary) 0%, #1a1a2e 100%);
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 30px;
+            --spacing-xxl: 40px;
+
+            /* Border Radius */
+            --radius-sm: 5px;
+            --radius-md: 10px;
+            --radius-lg: 15px;
+            --radius-xl: 20px;
+            --radius-xxl: 25px;
+            --radius-pill: 30px;
+
+            /* Shadows */
+            --shadow-sm: 0 5px 15px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 30px rgba(26, 39, 68, 0.5);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+            --shadow-accent: 0 5px 20px rgba(194, 59, 34, 0.4);
+            --shadow-accent-lg: 0 15px 40px rgba(194, 59, 34, 0.3);
+
+            /* Transitions */
+            --transition-fast: 0.3s;
+            --transition-medium: 0.5s;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,29 +79,29 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0a0a;
+            font-family: var(--font-family);
+            background: var(--color-bg-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: var(--spacing-lg);
         }
 
         .container {
-            background: #1a1a1a;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
             max-width: 1200px;
             width: 100%;
             overflow: hidden;
-            border: 2px solid #2a2a2a;
+            border: 2px solid var(--color-border-light);
         }
 
         .header {
-            background: linear-gradient(135deg, #3d4e7a 0%, #c23b22 100%);
+            background: var(--gradient-header);
             color: white;
-            padding: 40px;
+            padding: var(--spacing-xxl);
             text-align: center;
             position: relative;
         }
@@ -71,41 +138,41 @@
         .navigation {
             display: flex;
             background: #000000;
-            border-bottom: 2px solid #2a2a2a;
+            border-bottom: 2px solid var(--color-border-light);
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
 
         .nav-btn {
             flex: 0 0 auto;
-            padding: 20px 15px;
+            padding: var(--spacing-lg) var(--spacing-md);
             border: none;
             background: transparent;
             cursor: pointer;
             font-size: 1em;
             font-weight: 600;
-            color: #ffffff;
-            transition: all 0.3s;
+            color: var(--color-text-primary);
+            transition: all var(--transition-fast);
             white-space: nowrap;
             min-width: 120px;
         }
 
         .nav-btn:hover {
-            background: #1a1a1a;
-            color: #c23b22;
+            background: var(--color-bg-secondary);
+            color: var(--color-accent);
         }
 
         .nav-btn.active {
-            background: #1a1a1a;
-            color: #c23b22;
-            border-bottom: 3px solid #c23b22;
+            background: var(--color-bg-secondary);
+            color: var(--color-accent);
+            border-bottom: 3px solid var(--color-accent);
         }
 
         .content {
-            padding: 40px;
+            padding: var(--spacing-xxl);
             min-height: 500px;
-            background: #1a1a1a;
-            color: #ffffff;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
         }
 
         .section {
@@ -123,18 +190,18 @@
         }
 
         .benefit-card {
-            background: #1a2744;
+            background: var(--color-bg-card);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(26, 39, 68, 0.5);
-            border: 2px solid #3d4e7a;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--color-primary);
         }
 
         .benefit-card h3 {
             font-size: 2em;
-            margin-bottom: 10px;
+            margin-bottom: var(--spacing-sm);
             color: white;
         }
 
@@ -147,29 +214,29 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
         }
 
         .stat-card {
-            background: #2a2a2a;
+            background: var(--color-bg-tertiary);
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
             text-align: center;
-            border: 2px solid #444444;
+            border: 2px solid var(--color-border-medium);
         }
 
         .stat-number {
             font-size: 2.5em;
             font-weight: bold;
-            color: #c23b22;
-            margin-bottom: 10px;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
         }
 
         .stat-label {
             font-size: 1.1em;
-            color: #ffffff;
+            color: var(--color-text-primary);
         }
 
         .comparison-table {
@@ -188,17 +255,17 @@
         }
 
         .comparison-table th {
-            background: #2a2a2a;
+            background: var(--color-bg-tertiary);
             color: white;
-            padding: 15px;
+            padding: var(--spacing-md);
             text-align: left;
-            border-bottom: 2px solid #c23b22;
+            border-bottom: 2px solid var(--color-accent);
         }
 
         .comparison-table td {
-            padding: 15px;
-            border-bottom: 1px solid #2a2a2a;
-            color: #ffffff;
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border-light);
+            color: var(--color-text-primary);
         }
 
         .comparison-table tr:hover {

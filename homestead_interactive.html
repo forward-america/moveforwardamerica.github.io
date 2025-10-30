@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The American Homestead Act 2.0</title>
     <style>
+        :root {
+            /* Brand Colors */
+            --color-primary: #3d4e7a;
+            --color-accent: #c23b22;
+            --color-accent-dark: #a02f1a;
+
+            /* Background Colors */
+            --color-bg-primary: #0a0a0a;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-tertiary: #2a2a2a;
+            --color-bg-card: #1a2744;
+            --color-bg-card-alt: #2a3a5a;
+            --color-bg-overlay: rgba(26, 39, 68, 0.6);
+            --color-bg-overlay-dark: rgba(0,0,0,0.3);
+            --color-bg-overlay-darker: rgba(0,0,0,0.4);
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0e0;
+            --color-text-tertiary: #b0b0b0;
+
+            /* Border Colors */
+            --color-border-light: #2a2a2a;
+            --color-border-medium: #444444;
+
+            /* Status Colors */
+            --color-success: #28a745;
+            --color-error: #dc3545;
+            --color-warning: #ffc107;
+
+            /* Gradient Colors */
+            --gradient-header: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-button: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-card: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-card-alt) 100%);
+            --gradient-background: linear-gradient(135deg, var(--color-bg-primary) 0%, #1a1a2e 100%);
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 30px;
+            --spacing-xxl: 40px;
+
+            /* Border Radius */
+            --radius-sm: 5px;
+            --radius-md: 10px;
+            --radius-lg: 15px;
+            --radius-xl: 20px;
+            --radius-xxl: 25px;
+            --radius-pill: 30px;
+
+            /* Shadows */
+            --shadow-sm: 0 5px 15px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 30px rgba(26, 39, 68, 0.5);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+            --shadow-accent: 0 5px 20px rgba(194, 59, 34, 0.4);
+            --shadow-accent-lg: 0 15px 40px rgba(194, 59, 34, 0.3);
+
+            /* Transitions */
+            --transition-fast: 0.3s;
+            --transition-medium: 0.5s;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +79,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
+            font-family: var(--font-family);
+            background: var(--color-bg-primary);
             min-height: 100vh;
             display: flex;
             justify-content: center;
