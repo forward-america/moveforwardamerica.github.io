@@ -97,61 +97,46 @@
             cursor: not-allowed;
         }
 
-        /* Intro Banner - Redesigned from card to banner */
-        .intro-banner {
-            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
-            padding: 50px 40px;
+        /* Seamless policy section with intro - all on black background */
+        .policies-section {
+            background: var(--gradient-background);
+            padding: 60px 0 40px 0;
+            flex: 1;
+        }
+
+        .intro-text {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px 50px 40px;
             text-align: center;
-            border-bottom: 3px solid var(--color-accent);
-            position: relative;
-            overflow: hidden;
         }
 
-        .intro-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(194, 59, 34, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .intro-banner h2 {
+        .intro-text h2 {
             color: white;
             margin-bottom: 20px;
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
+            font-weight: 600;
         }
 
-        .intro-banner p {
-            font-size: 1.3em;
+        .intro-text p {
+            font-size: 1.2em;
             line-height: 1.8;
-            margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.95);
-            position: relative;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .intro-banner strong {
-            color: var(--color-accent);
-            font-size: 1.1em;
-        }
-
-        /* Seamless policy cards container - no nested container */
-        .policies-section {
-            background: var(--gradient-background);
-            padding: 40px 0;
-            flex: 1;
+        .intro-text strong {
+            color: white;
+            font-weight: 700;
         }
 
         .policies-container {
             display: flex;
             flex-direction: column;
-            gap: 0;
+            gap: 30px;
             max-width: 1000px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .policy-card {
@@ -380,20 +365,20 @@
                 text-align: center;
             }
 
-            .intro-banner {
-                padding: 40px 20px;
+            .intro-text {
+                padding: 0 20px 40px 20px;
             }
 
-            .intro-banner h2 {
+            .intro-text h2 {
                 font-size: 1.8em;
             }
 
-            .intro-banner p {
+            .intro-text p {
                 font-size: 1.1em;
             }
 
             .policies-section {
-                padding: 20px 0;
+                padding: 40px 0 20px 0;
             }
 
             .policy-card {
@@ -451,11 +436,11 @@
                 font-size: 1em;
             }
 
-            .intro-banner h2 {
+            .intro-text h2 {
                 font-size: 1.5em;
             }
 
-            .intro-banner p {
+            .intro-text p {
                 font-size: 1em;
             }
 
@@ -487,15 +472,14 @@
             <a href="#" class="nav-link coming-soon" title="Coming Soon">Forward Together</a>
         </div>
 
-        <!-- Intro Banner - Redesigned from card -->
-        <div class="intro-banner">
-            <h2>Rebuilding the American Dream</h2>
-            <p>Five comprehensive policy proposals designed to restore opportunity, security, and prosperity for all Americans through market-oriented, federalist solutions.</p>
-            <p><strong>Not ideology. Not partisanship. Just practical reforms that work.</strong></p>
-        </div>
-
-        <!-- Seamless Policy Cards Section -->
+        <!-- Seamless Policy Cards Section with Intro Text -->
         <div id="proposals" class="policies-section">
+            <div class="intro-text">
+                <h2>Rebuilding the American Dream</h2>
+                <p>Five comprehensive policy proposals designed to restore opportunity, security, and prosperity for all Americans through market-oriented, federalist solutions.</p>
+                <p><strong>Not ideology. Not partisanship. Just practical reforms that work.</strong></p>
+            </div>
+
             <div class="policies-container">
                 <!-- American Health Security Act -->
                 <div class="policy-card" onclick="window.location.href='ahsa_interactive.html'">
