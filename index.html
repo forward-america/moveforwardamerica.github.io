@@ -5,6 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Move Forward America - Policy Platform</title>
     <style>
+        :root {
+            /* Brand Colors */
+            --color-primary: #3d4e7a;
+            --color-accent: #c23b22;
+            --color-accent-dark: #a02f1a;
+
+            /* Background Colors */
+            --color-bg-primary: #0a0a0a;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-tertiary: #2a2a2a;
+            --color-bg-card: #1a2744;
+            --color-bg-card-alt: #2a3a5a;
+            --color-bg-overlay: rgba(26, 39, 68, 0.6);
+            --color-bg-overlay-dark: rgba(0,0,0,0.3);
+            --color-bg-overlay-darker: rgba(0,0,0,0.4);
+
+            /* Text Colors */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0e0;
+            --color-text-tertiary: #b0b0b0;
+
+            /* Border Colors */
+            --color-border-light: #2a2a2a;
+            --color-border-medium: #444444;
+
+            /* Status Colors */
+            --color-success: #28a745;
+            --color-error: #dc3545;
+            --color-warning: #ffc107;
+
+            /* Gradient Colors */
+            --gradient-header: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            --gradient-button: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            --gradient-card: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-card-alt) 100%);
+            --gradient-background: linear-gradient(135deg, var(--color-bg-primary) 0%, #1a1a2e 100%);
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            /* Spacing */
+            --spacing-xs: 5px;
+            --spacing-sm: 10px;
+            --spacing-md: 15px;
+            --spacing-lg: 20px;
+            --spacing-xl: 30px;
+            --spacing-xxl: 40px;
+
+            /* Border Radius */
+            --radius-sm: 5px;
+            --radius-md: 10px;
+            --radius-lg: 15px;
+            --radius-xl: 20px;
+            --radius-xxl: 25px;
+            --radius-pill: 30px;
+
+            /* Shadows */
+            --shadow-sm: 0 5px 15px rgba(0,0,0,0.3);
+            --shadow-md: 0 10px 30px rgba(26, 39, 68, 0.5);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+            --shadow-accent: 0 5px 20px rgba(194, 59, 34, 0.4);
+            --shadow-accent-lg: 0 15px 40px rgba(194, 59, 34, 0.3);
+
+            /* Transitions */
+            --transition-fast: 0.3s;
+            --transition-medium: 0.5s;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,14 +79,14 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            font-family: var(--font-family);
+            background: var(--gradient-background);
             min-height: 100vh;
-            color: #ffffff;
+            color: var(--color-text-primary);
         }
 
         .header {
-            background: linear-gradient(135deg, #3d4e7a 0%, #c23b22 100%);
+            background: var(--gradient-header);
             padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -50,24 +117,24 @@
         }
 
         .intro {
-            background: rgba(26, 39, 68, 0.6);
-            border: 2px solid #3d4e7a;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
+            background: var(--color-bg-overlay);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xxl);
             text-align: center;
         }
 
         .intro h2 {
-            color: #c23b22;
-            margin-bottom: 15px;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
             font-size: 2em;
         }
 
         .intro p {
             font-size: 1.2em;
             line-height: 1.8;
-            margin-bottom: 10px;
+            margin-bottom: var(--spacing-sm);
         }
 
         .policies-grid {
@@ -78,11 +145,11 @@
         }
 
         .policy-card {
-            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
-            border: 2px solid #3d4e7a;
-            border-radius: 20px;
+            background: var(--gradient-card);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-xl);
             padding: 35px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-fast) ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -95,13 +162,13 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, #3d4e7a 0%, #c23b22 100%);
+            background: var(--gradient-header);
         }
 
         .policy-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(194, 59, 34, 0.3);
-            border-color: #c23b22;
+            box-shadow: var(--shadow-accent-lg);
+            border-color: var(--color-accent);
         }
 
         .policy-icon {
@@ -110,29 +177,29 @@
         }
 
         .policy-card h3 {
-            color: #ffffff;
+            color: var(--color-text-primary);
             font-size: 1.8em;
-            margin-bottom: 15px;
+            margin-bottom: var(--spacing-md);
         }
 
         .policy-card .subtitle {
-            color: #c23b22;
+            color: var(--color-accent);
             font-size: 1.1em;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: var(--spacing-md);
         }
 
         .policy-card p {
-            color: #e0e0e0;
+            color: var(--color-text-secondary);
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-lg);
         }
 
         .policy-highlights {
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
+            background: var(--color-bg-overlay-dark);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
         }
 
         .policy-highlights ul {
@@ -151,20 +218,20 @@
 
         .policy-highlights li::before {
             content: '▸ ';
-            color: #c23b22;
+            color: var(--color-accent);
             font-weight: bold;
             margin-right: 8px;
         }
 
         .view-button {
             display: inline-block;
-            background: linear-gradient(135deg, #c23b22 0%, #a02f1a 100%);
+            background: var(--gradient-button);
             color: white;
             padding: 12px 30px;
-            border-radius: 25px;
+            border-radius: var(--radius-xxl);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all var(--transition-fast);
             border: none;
             cursor: pointer;
             font-size: 1em;
@@ -172,21 +239,21 @@
 
         .view-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(194, 59, 34, 0.4);
+            box-shadow: var(--shadow-accent);
         }
 
         .philosophy {
-            background: rgba(26, 39, 68, 0.6);
-            border: 2px solid #3d4e7a;
-            border-radius: 15px;
-            padding: 40px;
+            background: var(--color-bg-overlay);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xxl);
             margin: 60px 0 40px 0;
         }
 
         .philosophy h2 {
-            color: #c23b22;
+            color: var(--color-accent);
             font-size: 2em;
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-lg);
             text-align: center;
         }
 
@@ -198,38 +265,38 @@
         }
 
         .philosophy-item {
-            background: rgba(0,0,0,0.3);
+            background: var(--color-bg-overlay-dark);
             padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #c23b22;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-accent);
         }
 
         .philosophy-item h3 {
-            color: #ffffff;
+            color: var(--color-text-primary);
             margin-bottom: 12px;
             font-size: 1.3em;
         }
 
         .philosophy-item p {
-            color: #e0e0e0;
+            color: var(--color-text-secondary);
             line-height: 1.6;
         }
 
         .footer {
-            background: rgba(0,0,0,0.4);
-            padding: 30px 20px;
+            background: var(--color-bg-overlay-darker);
+            padding: var(--spacing-xl) var(--spacing-lg);
             text-align: center;
             margin-top: 60px;
-            border-top: 2px solid #3d4e7a;
+            border-top: 2px solid var(--color-primary);
         }
 
         .footer p {
-            color: #b0b0b0;
-            margin: 10px 0;
+            color: var(--color-text-tertiary);
+            margin: var(--spacing-sm) 0;
         }
 
         .footer a {
-            color: #c23b22;
+            color: var(--color-accent);
             text-decoration: none;
             font-weight: 600;
         }
