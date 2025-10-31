@@ -1,0 +1,24 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#B22234"/>
+  
+  <!-- Blue circle - larger -->
+  <circle cx="600" cy="400" r="310" fill="#1E3A8A"/>
+  
+  <!-- White circle border filling the outer boundary -->
+  <circle cx="600" cy="400" r="310" fill="none" stroke="white" stroke-width="20"/>
+  
+  <!-- Three five-point stars in pyramid formation (1 on top, 2 on bottom), closer together 15% -->
+  <!-- Top star -->
+  <polygon points="480,300 494,334 532,334 502,356 516,390 480,368 444,390 458,356 428,334 466,334" fill="white"/>
+  
+  <!-- Bottom left star -->
+  <polygon points="425,385 439,419 477,419 447,441 461,475 425,453 389,475 403,441 373,419 411,419" fill="white"/>
+  
+  <!-- Bottom right star -->
+  <polygon points="535,385 549,419 587,419 557,441 571,475 535,453 499,475 513,441 483,419 521,419" fill="white"/>
+  
+  <!-- Three chevrons (pointing LEFT) moved in 30% more to the left -->
+  <path d="M700,400 L650,450 L650,430 L685,400 L650,370 L650,350 Z" fill="white"/>
+  <path d="M770,400 L720,450 L720,430 L755,400 L720,370 L720,350 Z" fill="white"/>
+  <path d="M840,400 L790,450 L790,430 L825,400 L790,370 L790,350 Z" fill="white"/>
+</svg>
