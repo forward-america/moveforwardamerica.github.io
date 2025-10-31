@@ -54,6 +54,8 @@
             flex-wrap: wrap;
             padding: 15px 20px;
             gap: 10px;
+            position: relative;
+            z-index: 100;
         }
 
         .nav-link {
@@ -125,6 +127,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+        }
+
+        .org-card:not(.expanded) {
             overflow: hidden;
         }
 
@@ -172,9 +177,11 @@
         }
 
         .org-card.expanded .org-details {
-            max-height: 800px;
+            max-height: 2000px;
             opacity: 1;
             margin-top: 20px;
+            padding-bottom: 10px;
+            overflow: visible;
         }
 
         .org-description {
@@ -235,17 +242,19 @@
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            margin-bottom: 15px;
         }
 
         .contact-button {
             background: var(--gradient-button);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
+            font-size: 1.05em;
         }
 
         .contact-button:hover {
