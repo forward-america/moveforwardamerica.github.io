@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Chapter - Move Forward America</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .state-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .state-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .state-flag-large {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+            border: 3px solid var(--accent-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(194, 59, 34, 0.3);
+        }
+
+        .state-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: var(--gradient-header);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .state-header .tagline {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .state-header .description {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .content-section {
+            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
+            border-left: 5px solid var(--accent-color);
+            border-right: 5px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            font-size: 2em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin: 25px 0 15px;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .content-section li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        .content-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: var(--gradient-button);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+
+        .placeholder-content {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .placeholder-content p {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .cta-section {
+            background: var(--gradient-header);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--accent-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .state-header h1 {
+                font-size: 2.5em;
+            }
+
+            .state-header .tagline {
+                font-size: 1.2em;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+                border-left-width: 3px;
+                border-right-width: 3px;
+            }
+
+            .content-section h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Move Forward California</h1>
+        <p>Golden State Innovation for American Renewal</p>
+    </div>
+
+    <div class="navigation-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
+        <a href="march_forward.html" class="nav-link">March Forward</a>
+        <a href="coalition.html" class="nav-link">Forward Coalition</a>
+    </div>
+
+    <div class="state-page-container">
+        <div class="state-header">
+            <img src="states/california/california-move-forward.svg" alt="California Move Forward Flag" class="state-flag-large">
+            <h1>California Chapter</h1>
+            <p class="tagline">Golden State Innovation</p>
+            <p class="description">Harnessing California's innovative spirit to address housing affordability, economic opportunity, and sustainable growth through market-oriented, pragmatic solutions.</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="content-section">
+            <h2>About Move Forward California</h2>
+            <p>California has always been America's innovation laboratory—from technology to entertainment to environmental leadership. Move Forward California channels that innovative spirit toward solving our state's biggest challenges with practical, market-based solutions:</p>
+            <ul>
+                <li>Transform housing policy to make homeownership and affordability achievable</li>
+                <li>Reduce regulatory barriers that stifle small business and entrepreneurship</li>
+                <li>Expand educational choice and opportunity for all California families</li>
+                <li>Simplify taxation while maintaining vital public services</li>
+                <li>Promote sustainable growth through market mechanisms, not mandates</li>
+            </ul>
+        </div>
+
+        <!-- Our Priorities Section -->
+        <div class="content-section">
+            <h2>Our State Priorities <span class="coming-soon-badge">Content Coming Soon</span></h2>
+            <div class="placeholder-content">
+                <p>We're currently developing California-specific policy priorities. Check back soon for detailed proposals on:</p>
+            </div>
+            <h3>Housing Abundance</h3>
+            <p>California's housing crisis demands bold action. We support YIMBY reforms, zoning changes, and market-based approaches to dramatically increase housing supply and restore affordability.</p>
+
+            <h3>Small Business & Entrepreneurship</h3>
+            <p>Reducing occupational licensing barriers, simplifying regulations, and cutting through red tape to unleash California's entrepreneurial energy—especially in underserved communities.</p>
+
+            <h3>Education Innovation</h3>
+            <p>Expanding charter schools, supporting educational choice, and ensuring every California student has access to quality education regardless of their zip code or family income.</p>
+
+            <h3>Sustainable Prosperity</h3>
+            <p>Market-based environmental solutions that reduce emissions while supporting economic growth—proving that prosperity and sustainability go hand in hand.</p>
+        </div>
+
+        <!-- Leadership Section -->
+        <div class="content-section">
+            <h2>Chapter Leadership <span class="coming-soon-badge">Organizing</span></h2>
+            <div class="placeholder-content">
+                <p>We're building our California chapter leadership team across the state's diverse regions. From the Bay Area to San Diego, Sacramento to the Central Valley—we need leaders committed to pragmatic solutions.</p>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="content-section">
+            <h2>Events & Activities <span class="coming-soon-badge">Coming Soon</span></h2>
+            <div class="placeholder-content">
+                <p>California chapter events, policy forums, and community organizing opportunities will be posted here. Join us in building a coalition for practical change.</p>
+            </div>
+        </div>
+
+        <!-- Get Involved CTA -->
+        <div class="cta-section">
+            <h2>Get Involved</h2>
+            <p>Help us build a more affordable, prosperous, and innovative California through market-oriented solutions.</p>
+            <a href="index.html#proposals" class="cta-button">Learn About Our Proposals</a>
+        </div>
+    </div>
+</body>
+</html>

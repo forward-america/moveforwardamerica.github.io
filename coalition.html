@@ -198,38 +198,97 @@
             content: "Click for details ▼";
         }
 
-        .coming-soon-section {
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .state-card {
             background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
-            border: 2px solid var(--accent-color);
+            border: 3px solid var(--accent-color);
             border-radius: 15px;
-            padding: 60px 40px;
-            text-align: center;
-            margin-top: 60px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .coming-soon-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+        .state-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(194, 59, 34, 0.4);
+            border-color: #fff;
+        }
+
+        .state-flag {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .state-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .state-info {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .state-info h3 {
+            font-size: 2em;
             color: var(--text-primary);
+            margin-bottom: 10px;
         }
 
-        .coming-soon-section p {
-            font-size: 1.2em;
+        .state-tagline {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .state-description {
             color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
         }
 
-        .coming-soon-badge {
-            display: inline-block;
+        .state-button {
             background: var(--gradient-button);
             color: white;
-            padding: 10px 25px;
+            padding: 12px 25px;
             border-radius: 25px;
+            text-decoration: none;
             font-weight: 600;
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .state-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(194, 59, 34, 0.4);
         }
 
         @media (max-width: 768px) {
             .organizations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .states-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -240,6 +299,14 @@
             .org-header {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .state-flag {
+                height: 150px;
+            }
+
+            .state-info h3 {
+                font-size: 1.6em;
             }
         }
     </style>
@@ -723,11 +790,64 @@
             </div>
         </div>
 
-        <!-- State Chapters Section (Coming Soon) -->
-        <div class="coming-soon-section">
-            <h2>🗺️ State Chapters</h2>
-            <p>Our state-by-state network of Forward Coalition chapters is launching soon. Each chapter will work to advance market-oriented, federalist solutions at the state level, serving as laboratories of democracy for national renewal.</p>
-            <span class="coming-soon-badge">Coming Soon</span>
+        <!-- State Chapters Section -->
+        <div class="section-header" style="margin-top: 60px;">
+            <h1>🗺️ State Chapters</h1>
+            <p>Our state-by-state network of Forward Coalition chapters advancing market-oriented, federalist solutions at the state level. Each chapter serves as a laboratory of democracy for national renewal.</p>
+        </div>
+
+        <div class="states-grid">
+            <!-- California -->
+            <div class="state-card" onclick="window.location.href='california.html'">
+                <div class="state-flag">
+                    <img src="states/california/california-move-forward.svg" alt="California Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>California</h3>
+                    <p class="state-tagline">Golden State Innovation</p>
+                    <p class="state-description">Leading the way in housing reform, entrepreneurship, and market-based solutions to California's biggest challenges.</p>
+                    <a href="california.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- New York -->
+            <div class="state-card" onclick="window.location.href='newyork.html'">
+                <div class="state-flag">
+                    <img src="states/newyork/new-york-move-forward.svg" alt="New York Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>New York</h3>
+                    <p class="state-tagline">Empire State Progress</p>
+                    <p class="state-description">Advancing opportunity, economic freedom, and pragmatic governance solutions for New York's diverse communities.</p>
+                    <a href="newyork.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- Tennessee -->
+            <div class="state-card" onclick="window.location.href='tennessee.html'">
+                <div class="state-flag">
+                    <img src="states/tennessee/tennessee-move-forward.svg" alt="Tennessee Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>Tennessee</h3>
+                    <p class="state-tagline">Volunteer State Solutions</p>
+                    <p class="state-description">Building on Tennessee's tradition of practical governance with policies that expand opportunity and prosperity.</p>
+                    <a href="tennessee.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- Texas -->
+            <div class="state-card" onclick="window.location.href='texas.html'">
+                <div class="state-flag">
+                    <img src="states/texas/texas-move-forward.svg" alt="Texas Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>Texas</h3>
+                    <p class="state-tagline">Lone Star Leadership</p>
+                    <p class="state-description">Championing economic growth, individual liberty, and federalist principles in America's fastest-growing state.</p>
+                    <a href="texas.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
         </div>
     </div>
 
