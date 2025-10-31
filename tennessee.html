@@ -6,10 +6,85 @@
     <title>Tennessee Chapter - Move Forward America</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Override body styles to match main page */
+        body {
+            font-family: var(--font-family);
+            background: var(--gradient-background);
+            min-height: 100vh;
+            color: var(--color-text-primary);
+            display: block !important;
+            justify-content: initial !important;
+            align-items: initial !important;
+            padding: 0 !important;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .banner {
+            background: var(--gradient-header);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .banner p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            color: white;
+        }
+
+        .navigation-bar {
+            background: #000000;
+            border-bottom: 2px solid var(--color-border-light);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 20px;
+            gap: 10px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            background: transparent;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: var(--color-bg-secondary);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .state-section {
+            background: var(--gradient-background);
+            padding: 60px 0 40px 0;
+            flex: 1;
+        }
+
         .state-page-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 40px;
         }
 
         .state-header {
@@ -31,22 +106,22 @@
         .state-header h1 {
             font-size: 3.5em;
             margin-bottom: 15px;
-            background: var(--gradient-header);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
+            font-weight: 700;
         }
 
         .state-header .tagline {
             font-size: 1.5em;
-            color: var(--accent-color);
+            color: var(--color-accent);
             font-weight: 600;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .state-header .description {
             font-size: 1.2em;
-            color: var(--text-secondary);
+            color: #ffffff;
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.8;
@@ -54,8 +129,7 @@
 
         .content-section {
             background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
-            border-left: 5px solid var(--accent-color);
-            border-right: 5px solid var(--accent-color);
+            border: 3px solid var(--accent-color);
             border-radius: 15px;
             padding: 40px;
             margin-bottom: 30px;
@@ -63,20 +137,22 @@
 
         .content-section h2 {
             font-size: 2em;
-            color: var(--text-primary);
+            color: #ffffff;
             margin-bottom: 20px;
             border-bottom: 3px solid var(--accent-color);
             padding-bottom: 10px;
+            font-weight: 700;
         }
 
         .content-section h3 {
             font-size: 1.5em;
-            color: var(--accent-color);
+            color: var(--color-accent);
             margin: 25px 0 15px;
+            font-weight: 700;
         }
 
         .content-section p {
-            color: var(--text-secondary);
+            color: #ffffff;
             line-height: 1.8;
             margin-bottom: 15px;
             font-size: 1.1em;
@@ -91,8 +167,8 @@
         .content-section li {
             padding: 12px 0 12px 35px;
             position: relative;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            color: #ffffff;
+            line-height: 1.7;
             font-size: 1.05em;
         }
 
@@ -117,8 +193,8 @@
         }
 
         .placeholder-content {
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px dashed var(--accent-color);
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px dashed var(--color-accent);
             border-radius: 10px;
             padding: 30px;
             text-align: center;
@@ -126,7 +202,7 @@
         }
 
         .placeholder-content p {
-            color: var(--text-tertiary);
+            color: rgba(255, 255, 255, 0.7);
             font-style: italic;
         }
 
@@ -168,6 +244,28 @@
         }
 
         @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2em;
+            }
+
+            .banner p {
+                font-size: 1.1em;
+            }
+
+            .navigation-bar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+
+            .state-page-container {
+                padding: 0 20px;
+            }
+
             .state-header h1 {
                 font-size: 2.5em;
             }
@@ -178,8 +276,6 @@
 
             .content-section {
                 padding: 25px 20px;
-                border-left-width: 3px;
-                border-right-width: 3px;
             }
 
             .content-section h2 {
@@ -189,19 +285,21 @@
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Move Forward Tennessee</h1>
-        <p>Volunteer State Solutions for American Renewal</p>
-    </div>
+    <div class="page-wrapper">
+        <div class="banner">
+            <h1>Move Forward Tennessee</h1>
+            <p>Volunteer State Solutions for American Renewal</p>
+        </div>
 
-    <div class="navigation-bar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
-        <a href="march_forward.html" class="nav-link">March Forward</a>
-        <a href="coalition.html" class="nav-link">Forward Coalition</a>
-    </div>
+        <div class="navigation-bar">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
+            <a href="march_forward.html" class="nav-link">March Forward</a>
+            <a href="coalition.html" class="nav-link">Forward Coalition</a>
+        </div>
 
-    <div class="state-page-container">
+        <div class="state-section">
+            <div class="state-page-container">
         <div class="state-header">
             <img src="states/tennessee/tennessee-move-forward.svg" alt="Tennessee Move Forward Flag" class="state-flag-large">
             <h1>Tennessee Chapter</h1>
@@ -262,6 +360,8 @@
             <h2>Get Involved</h2>
             <p>Join us in building a stronger, more prosperous Tennessee through practical, market-oriented solutions.</p>
             <a href="index.html#proposals" class="cta-button">Learn About Our Proposals</a>
+        </div>
+            </div>
         </div>
     </div>
 </body>
