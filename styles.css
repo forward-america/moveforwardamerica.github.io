@@ -504,6 +504,236 @@ h2 {
 }
 
 /* ================================================
+   INTERACTIVE COMPONENTS
+   ================================================ */
+
+/* Three Layers Component (AHSA) */
+.three-layers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.layer {
+    background: var(--gradient-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.layer:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-3px);
+}
+
+.layer h3 {
+    color: var(--color-text-primary);
+    font-size: 1.5em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.layer-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    margin-top: var(--spacing-md);
+}
+
+.layer.expanded .layer-detail {
+    max-height: 500px;
+    transition: max-height 0.4s ease-in;
+}
+
+.layer-1 {
+    border-left: 5px solid #4a90e2;
+}
+
+.layer-2 {
+    border-left: 5px solid #f5a623;
+}
+
+.layer-3 {
+    border-left: 5px solid var(--color-accent);
+}
+
+/* Four Pillars Component (AOA) */
+.four-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.pillar {
+    background: var(--gradient-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.pillar:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-5px);
+}
+
+.pillar h3 {
+    color: var(--color-text-primary);
+    font-size: 1.4em;
+    margin-bottom: var(--spacing-md);
+}
+
+.pillar-icon {
+    font-size: 3em;
+    margin-bottom: var(--spacing-md);
+}
+
+.pillar-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    margin-top: var(--spacing-md);
+}
+
+.pillar.expanded .pillar-detail {
+    max-height: 800px;
+    transition: max-height 0.4s ease-in;
+}
+
+/* Timeline Component (AOA) */
+.timeline {
+    position: relative;
+    margin: var(--spacing-xxl) 0;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-accent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    background: var(--color-accent);
+    color: white;
+    padding: 8px 15px;
+    border-radius: var(--radius-md);
+    font-weight: bold;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.timeline-marker::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    margin-left: -23px;
+    border: 3px solid var(--color-bg-secondary);
+}
+
+.timeline-content {
+    background: var(--color-bg-tertiary);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-accent);
+    margin-left: 20px;
+}
+
+.timeline-content h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Government Structure Branches (ARA) */
+.government-structure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.branch {
+    background: var(--gradient-card);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.branch:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-5px);
+}
+
+.branch h3 {
+    color: var(--color-text-primary);
+    font-size: 1.5em;
+    margin-bottom: var(--spacing-md);
+}
+
+.branch-icon {
+    font-size: 3em;
+    margin-bottom: var(--spacing-md);
+}
+
+.branch-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    margin-top: var(--spacing-md);
+}
+
+.branch.expanded .branch-detail {
+    max-height: 1000px;
+    transition: max-height 0.4s ease-in;
+}
+
+/* Housing Calculator (Homestead) */
+.housing-calculator {
+    background: var(--color-bg-tertiary);
+    padding: var(--spacing-xxl);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-primary);
+    margin: var(--spacing-xl) 0;
+}
+
+.housing-calculator h3 {
+    color: var(--color-accent);
+    font-size: 1.8em;
+    margin-bottom: var(--spacing-lg);
+    border: none;
+    display: block;
+}
+
+/* ================================================
    MOBILE RESPONSIVE STYLES
    ================================================ */
 @media (max-width: 768px) {
@@ -643,6 +873,56 @@ h2 {
 
     h2 {
         font-size: 1.5em;
+    }
+
+    /* Interactive Components - Mobile */
+    .three-layers {
+        gap: var(--spacing-md);
+    }
+
+    .layer {
+        padding: var(--spacing-lg);
+    }
+
+    .four-pillars {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .pillar {
+        padding: var(--spacing-lg);
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-marker {
+        position: static;
+        display: inline-block;
+        margin-bottom: var(--spacing-sm);
+        font-size: 0.85em;
+    }
+
+    .timeline-marker::after {
+        display: none;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+
+    .government-structure {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .branch {
+        padding: var(--spacing-lg);
+    }
+
+    .housing-calculator {
+        padding: var(--spacing-lg);
     }
 }
 
