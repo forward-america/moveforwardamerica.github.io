@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1500 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- White top half -->
+  <rect x="0" y="0" width="1500" height="450" fill="white"/>
+  
+  <!-- Red bottom half -->
+  <rect x="0" y="450" width="1500" height="450" fill="#BF0A30"/>
+  
+  <!-- Blue vertical stripe -->
+  <rect x="0" y="0" width="500" height="900" fill="#002868"/>
+  
+  <!-- White lone star (adjusted positioning) -->
+  <polygon points="217,321 247,401 337,401 265,456 295,536 217,481 139,536 169,456 97,401 187,401" 
+           fill="white"/>
+  
+  <!-- Three large chevrons with split colors - red in white area, white in red area -->
+  <!-- Chevron 1 - top half (red) -->
+  <path d="M900,450 L750,300 L750,360 L840,450 Z" 
+        fill="#BF0A30"/>
+  <!-- Chevron 1 - bottom half (white) -->
+  <path d="M900,450 L840,450 L750,540 L750,600 Z" 
+        fill="white"/>
+  
+  <!-- Chevron 2 - top half (red) -->
+  <path d="M1100,450 L950,300 L950,360 L1040,450 Z" 
+        fill="#BF0A30"/>
+  <!-- Chevron 2 - bottom half (white) -->
+  <path d="M1100,450 L1040,450 L950,540 L950,600 Z" 
+        fill="white"/>
+  
+  <!-- Chevron 3 - top half (red) -->
+  <path d="M1300,450 L1150,300 L1150,360 L1240,450 Z" 
+        fill="#BF0A30"/>
+  <!-- Chevron 3 - bottom half (white) -->
+  <path d="M1300,450 L1240,450 L1150,540 L1150,600 Z" 
+        fill="white"/>
+</svg>
