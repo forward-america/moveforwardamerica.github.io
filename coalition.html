@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forward Coalition - Move Forward America</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .coalition-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: var(--gradient-header);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .organizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .org-card {
+            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
+            border-left: 5px solid var(--accent-color);
+            border-right: 5px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(194, 59, 34, 0.3);
+        }
+
+        .org-card.expanded {
+            background: linear-gradient(135deg, #2a3a5a 0%, #1a2744 100%);
+        }
+
+        .org-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .org-icon {
+            font-size: 3em;
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(194, 59, 34, 0.1);
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .org-title h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .org-category {
+            font-size: 0.9em;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .org-summary {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .org-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .org-card.expanded .org-details {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .org-description {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .org-description h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .org-description p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .alignment-points {
+            margin-bottom: 20px;
+        }
+
+        .alignment-points h4 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .alignment-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .alignment-points li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .alignment-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .org-contact {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            background: var(--gradient-button);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(194, 59, 34, 0.4);
+        }
+
+        .expand-indicator {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .org-card.expanded .expand-indicator:before {
+            content: "Click to collapse ▲";
+        }
+
+        .org-card:not(.expanded) .expand-indicator:before {
+            content: "Click for details ▼";
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .state-card {
+            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
+            border: 3px solid var(--accent-color);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .state-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(194, 59, 34, 0.4);
+            border-color: #fff;
+        }
+
+        .state-flag {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .state-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .state-info {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .state-info h3 {
+            font-size: 2em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .state-tagline {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .state-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .state-button {
+            background: var(--gradient-button);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .state-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(194, 59, 34, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .organizations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .states-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h1 {
+                font-size: 2em;
+            }
+
+            .org-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .state-flag {
+                height: 150px;
+            }
+
+            .state-info h3 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Forward Coalition</h1>
+        <p>Building a Network of Partners for American Renewal</p>
+    </div>
+
+    <div class="navigation-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
+        <a href="march_forward.html" class="nav-link">March Forward</a>
+        <a href="coalition.html" class="nav-link active">Forward Coalition</a>
+    </div>
+
+    <div class="coalition-container">
+        <!-- Partner Organizations Section -->
+        <div class="section-header">
+            <h1>🤝 Coalition Partners</h1>
+            <p>Organizations aligned with our vision of market-oriented, federalist solutions for American prosperity and renewal. Click any card to learn more about how these partners support our shared agenda.</p>
+        </div>
+
+        <div class="organizations-grid">
+            <!-- Economic Policy & Tax Reform -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">📊</div>
+                    <div class="org-title">
+                        <h3>Americans for Tax Reform</h3>
+                        <div class="org-category">Tax Reform & Economic Policy</div>
+                    </div>
+                </div>
+                <p class="org-summary">Leading advocate for taxpayer protection and comprehensive tax reform aligned with our American Prosperity Act vision.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>Americans for Tax Reform (ATR) is a coalition of taxpayers and organizations dedicated to a system of taxation that is simpler, fairer, flatter, more visible, and lower than it is today. Their advocacy for simplified tax structures and taxpayer protections aligns closely with our vision of a streamlined, growth-oriented tax system.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports simplified flat tax structures similar to our 15% flat tax proposal</li>
+                            <li>Advocates for reducing tax burden on small businesses and entrepreneurs</li>
+                            <li>Promotes transparency and taxpayer accountability in government spending</li>
+                            <li>Champions market-based economic solutions over government intervention</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.atr.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">💼</div>
+                    <div class="org-title">
+                        <h3>National Taxpayers Union</h3>
+                        <div class="org-category">Taxpayer Advocacy</div>
+                    </div>
+                </div>
+                <p class="org-summary">Grassroots advocacy organization fighting for lower taxes, limited government, and economic freedom for all Americans.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>The National Taxpayers Union (NTU) is America's oldest taxpayer advocacy organization, mobilizing citizens for lower taxes, less wasteful spending, and accountable government at all levels. Their research-driven approach to fiscal policy reform complements our evidence-based policy framework.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports tax simplification and reduction of tax complexity</li>
+                            <li>Advocates for fiscal responsibility and balanced budgets</li>
+                            <li>Promotes economic freedom and entrepreneurship</li>
+                            <li>Champions transparency in government spending</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.ntu.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">📈</div>
+                    <div class="org-title">
+                        <h3>Tax Foundation</h3>
+                        <div class="org-category">Tax Policy Research</div>
+                    </div>
+                </div>
+                <p class="org-summary">Independent tax policy research organization providing data-driven analysis for sound tax policy.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>The Tax Foundation is a leading independent tax policy research organization that has monitored tax policy at the federal, state, and local levels since 1937. Their commitment to evidence-based policy analysis mirrors our pragmatic, data-driven approach to economic reform.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Provides rigorous economic analysis of tax policy proposals</li>
+                            <li>Supports pro-growth tax reform based on sound economic principles</li>
+                            <li>Advocates for tax neutrality and simplification</li>
+                            <li>Promotes competitive tax structures that encourage investment</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://taxfoundation.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Housing & Development -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏘️</div>
+                    <div class="org-title">
+                        <h3>Strong Towns</h3>
+                        <div class="org-category">Urban Development & Housing</div>
+                    </div>
+                </div>
+                <p class="org-summary">National movement focused on sustainable, financially strong communities and housing abundance.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>Strong Towns is a nonprofit media organization focused on helping cities become financially resilient and prosperous. Their emphasis on bottom-up, incremental development and removing barriers to affordable housing aligns with our American Homestead Act 2.0 federalist approach.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Advocates for local control and community-driven development</li>
+                            <li>Supports reducing regulatory barriers to housing construction</li>
+                            <li>Promotes mixed-use, financially sustainable development patterns</li>
+                            <li>Champions incremental, market-responsive growth</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.strongtowns.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏗️</div>
+                    <div class="org-title">
+                        <h3>YIMBY Action</h3>
+                        <div class="org-category">Housing Abundance Movement</div>
+                    </div>
+                </div>
+                <p class="org-summary">Network of pro-housing activists working to make housing more abundant and affordable.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>YIMBY Action (Yes In My Back Yard) is a national network of pro-housing activists working to end the housing shortage and build more inclusive communities. Their focus on removing zoning barriers and enabling housing construction directly supports our homeownership and affordability goals.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports zoning reform to enable more housing construction</li>
+                            <li>Advocates for reducing regulatory barriers to development</li>
+                            <li>Promotes housing abundance as a solution to affordability crisis</li>
+                            <li>Champions market-based solutions to housing challenges</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://yimbyaction.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏡</div>
+                    <div class="org-title">
+                        <h3>Habitat for Humanity</h3>
+                        <div class="org-category">Affordable Housing & Homeownership</div>
+                    </div>
+                </div>
+                <p class="org-summary">Global nonprofit helping families build strength, stability, and self-reliance through affordable homeownership.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>Habitat for Humanity is a global nonprofit that helps families build and improve places to call home. Their commitment to making homeownership accessible to working families embodies the spirit of our American Homestead Act 2.0.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Promotes homeownership as a path to economic stability</li>
+                            <li>Emphasizes community partnership and local solutions</li>
+                            <li>Supports innovative financing models for affordable housing</li>
+                            <li>Champions self-reliance and family economic security</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.habitat.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Education & Opportunity -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🎓</div>
+                    <div class="org-title">
+                        <h3>EdChoice</h3>
+                        <div class="org-category">Education & School Choice</div>
+                    </div>
+                </div>
+                <p class="org-summary">Leading organization advancing educational choice, empowering families, and promoting education freedom.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>EdChoice is a nonprofit organization advancing educational freedom and choice for all as a pathway to successful lives and a stronger society. Their focus on empowering families and creating educational opportunity aligns with our American Opportunity Act.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports parental choice and educational freedom</li>
+                            <li>Advocates for innovative education financing models</li>
+                            <li>Promotes competition and quality in education</li>
+                            <li>Champions opportunity for all children regardless of background</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.edchoice.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">⚖️</div>
+                    <div class="org-title">
+                        <h3>Institute for Justice</h3>
+                        <div class="org-category">Economic Liberty & Entrepreneurship</div>
+                    </div>
+                </div>
+                <p class="org-summary">National law firm protecting economic liberty, private property, and free speech rights.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>The Institute for Justice is a nonprofit, public-interest law firm that litigates to limit the size and scope of government power and to ensure that all Americans have the right to pursue their version of the American Dream. Their work removing barriers to entrepreneurship supports our prosperity and opportunity agenda.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Fights occupational licensing barriers that limit opportunity</li>
+                            <li>Protects economic liberty and freedom to earn a living</li>
+                            <li>Challenges regulations that stifle entrepreneurship</li>
+                            <li>Promotes private property rights and economic freedom</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://ij.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Healthcare -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏥</div>
+                    <div class="org-title">
+                        <h3>Docs 4 Patient Care Foundation</h3>
+                        <div class="org-category">Healthcare Reform</div>
+                    </div>
+                </div>
+                <p class="org-summary">Physician-led organization advocating for patient-centered healthcare reform and market-based solutions.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>Docs 4 Patient Care Foundation is dedicated to protecting the patient-physician relationship through the promotion of free-market, patient-centered healthcare. Their vision of healthcare security without job lock mirrors our American Health Security Act principles.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports patient-centered, market-based healthcare reform</li>
+                            <li>Advocates for healthcare portability and consumer choice</li>
+                            <li>Promotes price transparency and competition</li>
+                            <li>Champions physician independence and quality care</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://d4pcfoundation.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">⚕️</div>
+                    <div class="org-title">
+                        <h3>Association of American Physicians and Surgeons</h3>
+                        <div class="org-category">Healthcare Freedom</div>
+                    </div>
+                </div>
+                <p class="org-summary">Physicians' organization dedicated to protecting physician independence and patient choice.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>AAPS is a non-partisan professional association of physicians dedicated to preserving the sanctity of the patient-physician relationship and the practice of private medicine. Their advocacy for healthcare freedom and against one-size-fits-all mandates supports our flexible, consumer-driven approach.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports individual healthcare freedom and choice</li>
+                            <li>Opposes one-size-fits-all government mandates</li>
+                            <li>Advocates for transparent pricing and competition</li>
+                            <li>Promotes physician independence and quality care</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://aaps.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Government Reform -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🗳️</div>
+                    <div class="org-title">
+                        <h3>FairVote</h3>
+                        <div class="org-category">Electoral Reform</div>
+                    </div>
+                </div>
+                <p class="org-summary">Nonpartisan organization advancing electoral reforms for fair representation and functional democracy.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>FairVote is a nonpartisan champion of electoral reforms that give voters greater choice, a stronger voice, and a representative democracy that works for all. Their work on voting reform complements our American Renewal Amendment's focus on functional governance.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports ranked choice voting and electoral competition</li>
+                            <li>Advocates for fair representation and reduced polarization</li>
+                            <li>Promotes reforms that make government more responsive</li>
+                            <li>Champions evidence-based democratic innovation</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://fairvote.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🤝</div>
+                    <div class="org-title">
+                        <h3>No Labels</h3>
+                        <div class="org-category">Bipartisan Governance</div>
+                    </div>
+                </div>
+                <p class="org-summary">Movement of Democrats, Republicans, and independents working to bridge political divides.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>No Labels is an organization of Democrats, Republicans, and independents dedicated to a new politics of problem-solving. Their post-partisan approach to governance aligns with our coalition-building philosophy and pragmatic policy focus.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Promotes bipartisan cooperation and problem-solving</li>
+                            <li>Supports pragmatic, evidence-based policymaking</li>
+                            <li>Advocates for functional governance over partisan gridlock</li>
+                            <li>Champions common sense solutions that unite Americans</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.nolabels.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Business & Entrepreneurship -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏪</div>
+                    <div class="org-title">
+                        <h3>National Federation of Independent Business</h3>
+                        <div class="org-category">Small Business Advocacy</div>
+                    </div>
+                </div>
+                <p class="org-summary">Nation's leading small business association advocating for policies that help small businesses grow.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>NFIB is the voice of small business, advocating on behalf of America's small and independent business owners. Their focus on reducing regulatory burdens and supporting entrepreneurship directly aligns with our American Prosperity Act's 0-5% tax rate for small businesses.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Advocates for lower taxes on small businesses</li>
+                            <li>Supports reducing regulatory burdens and compliance costs</li>
+                            <li>Promotes entrepreneurship and small business growth</li>
+                            <li>Champions policies that enable job creation</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://www.nfib.com" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🚀</div>
+                    <div class="org-title">
+                        <h3>Small Business & Entrepreneurship Council</h3>
+                        <div class="org-category">Pro-Growth Advocacy</div>
+                    </div>
+                </div>
+                <p class="org-summary">Advocacy organization promoting entrepreneurship and protecting small business through pro-growth policies.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>The Small Business & Entrepreneurship Council (SBE Council) is a nonprofit advocacy organization that works to protect small business and promote entrepreneurship. Their pro-growth policy focus complements our market-oriented economic agenda.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Supports pro-growth tax and regulatory policies</li>
+                            <li>Advocates for reducing barriers to entrepreneurship</li>
+                            <li>Promotes competitive markets and economic freedom</li>
+                            <li>Champions innovation and business formation</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://sbecouncil.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+
+            <!-- Federalism -->
+            <div class="org-card" onclick="toggleOrgCard(this)">
+                <div class="org-header">
+                    <div class="org-icon">🏛️</div>
+                    <div class="org-title">
+                        <h3>American Legislative Exchange Council</h3>
+                        <div class="org-category">State Policy Innovation</div>
+                    </div>
+                </div>
+                <p class="org-summary">Nonpartisan organization of state legislators supporting limited government and free markets.</p>
+                <div class="org-details">
+                    <div class="org-description">
+                        <h4>About the Organization</h4>
+                        <p>ALEC is America's largest nonpartisan voluntary membership organization of state legislators dedicated to limited government, free markets, and federalism. Their focus on state-level policy innovation and laboratories of democracy directly supports our federalist approach.</p>
+                    </div>
+                    <div class="alignment-points">
+                        <h4>Key Alignment Points</h4>
+                        <ul>
+                            <li>Promotes federalism and state policy innovation</li>
+                            <li>Supports free market principles and limited government</li>
+                            <li>Advocates for state-level experimentation and best practices</li>
+                            <li>Champions competitive federalism and interstate cooperation</li>
+                        </ul>
+                    </div>
+                    <div class="org-contact">
+                        <a href="https://alec.org" target="_blank" class="contact-button">Visit Website</a>
+                    </div>
+                </div>
+                <div class="expand-indicator"></div>
+            </div>
+        </div>
+
+        <!-- State Chapters Section -->
+        <div class="section-header" style="margin-top: 60px;">
+            <h1>🗺️ State Chapters</h1>
+            <p>Our state-by-state network of Forward Coalition chapters advancing market-oriented, federalist solutions at the state level. Each chapter serves as a laboratory of democracy for national renewal.</p>
+        </div>
+
+        <div class="states-grid">
+            <!-- California -->
+            <div class="state-card" onclick="window.location.href='california.html'">
+                <div class="state-flag">
+                    <img src="states/california/california-move-forward.svg" alt="California Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>California</h3>
+                    <p class="state-tagline">Golden State Innovation</p>
+                    <p class="state-description">Leading the way in housing reform, entrepreneurship, and market-based solutions to California's biggest challenges.</p>
+                    <a href="california.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- New York -->
+            <div class="state-card" onclick="window.location.href='newyork.html'">
+                <div class="state-flag">
+                    <img src="states/newyork/new-york-move-forward.svg" alt="New York Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>New York</h3>
+                    <p class="state-tagline">Empire State Progress</p>
+                    <p class="state-description">Advancing opportunity, economic freedom, and pragmatic governance solutions for New York's diverse communities.</p>
+                    <a href="newyork.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- Tennessee -->
+            <div class="state-card" onclick="window.location.href='tennessee.html'">
+                <div class="state-flag">
+                    <img src="states/tennessee/tennessee-move-forward.svg" alt="Tennessee Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>Tennessee</h3>
+                    <p class="state-tagline">Volunteer State Solutions</p>
+                    <p class="state-description">Building on Tennessee's tradition of practical governance with policies that expand opportunity and prosperity.</p>
+                    <a href="tennessee.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+
+            <!-- Texas -->
+            <div class="state-card" onclick="window.location.href='texas.html'">
+                <div class="state-flag">
+                    <img src="states/texas/texas-move-forward.svg" alt="Texas Move Forward Flag">
+                </div>
+                <div class="state-info">
+                    <h3>Texas</h3>
+                    <p class="state-tagline">Lone Star Leadership</p>
+                    <p class="state-description">Championing economic growth, individual liberty, and federalist principles in America's fastest-growing state.</p>
+                    <a href="texas.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleOrgCard(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // Close expanded cards when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.org-card')) {
+                document.querySelectorAll('.org-card.expanded').forEach(card => {
+                    card.classList.remove('expanded');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

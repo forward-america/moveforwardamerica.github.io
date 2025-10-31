@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennessee Chapter - Move Forward America</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .state-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .state-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .state-flag-large {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+            border: 3px solid var(--accent-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(194, 59, 34, 0.3);
+        }
+
+        .state-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: var(--gradient-header);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .state-header .tagline {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .state-header .description {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .content-section {
+            background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
+            border-left: 5px solid var(--accent-color);
+            border-right: 5px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            font-size: 2em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .content-section h3 {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin: 25px 0 15px;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .content-section li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        .content-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: var(--gradient-button);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+
+        .placeholder-content {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .placeholder-content p {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .cta-section {
+            background: var(--gradient-header);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--accent-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .state-header h1 {
+                font-size: 2.5em;
+            }
+
+            .state-header .tagline {
+                font-size: 1.2em;
+            }
+
+            .content-section {
+                padding: 25px 20px;
+                border-left-width: 3px;
+                border-right-width: 3px;
+            }
+
+            .content-section h2 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Move Forward Tennessee</h1>
+        <p>Volunteer State Solutions for American Renewal</p>
+    </div>
+
+    <div class="navigation-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
+        <a href="march_forward.html" class="nav-link">March Forward</a>
+        <a href="coalition.html" class="nav-link">Forward Coalition</a>
+    </div>
+
+    <div class="state-page-container">
+        <div class="state-header">
+            <img src="states/tennessee/tennessee-move-forward.svg" alt="Tennessee Move Forward Flag" class="state-flag-large">
+            <h1>Tennessee Chapter</h1>
+            <p class="tagline">Volunteer State Solutions</p>
+            <p class="description">Building on Tennessee's proud tradition of practical governance, we're advancing market-oriented, federalist policies that expand opportunity and prosperity for all Tennesseans.</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="content-section">
+            <h2>About Move Forward Tennessee</h2>
+            <p>Tennessee has long been a laboratory of innovation in American governance—from our constitutional commitment to low taxes to our pioneering education reforms. Move Forward Tennessee builds on this legacy, advocating for policies that:</p>
+            <ul>
+                <li>Simplify and reduce tax burdens on working families and small businesses</li>
+                <li>Expand access to affordable housing and homeownership opportunities</li>
+                <li>Increase educational freedom and opportunity for all children</li>
+                <li>Ensure healthcare security without government overreach</li>
+                <li>Protect individual liberty while fostering community prosperity</li>
+            </ul>
+        </div>
+
+        <!-- Our Priorities Section -->
+        <div class="content-section">
+            <h2>Our State Priorities <span class="coming-soon-badge">Content Coming Soon</span></h2>
+            <div class="placeholder-content">
+                <p>We're currently developing Tennessee-specific policy priorities aligned with our national agenda. Check back soon for detailed proposals on:</p>
+            </div>
+            <h3>Economic Growth & Tax Reform</h3>
+            <p>Tennessee's no-income-tax advantage is a strong foundation. We'll work to build on this success with additional reforms that support small businesses, entrepreneurs, and working families.</p>
+
+            <h3>Education & Opportunity</h3>
+            <p>Expanding school choice, supporting career and technical education, and ensuring every Tennessee child has access to quality educational opportunities regardless of zip code.</p>
+
+            <h3>Housing & Community Development</h3>
+            <p>Addressing housing affordability challenges in growing cities like Nashville and Memphis while supporting rural community development across the state.</p>
+
+            <h3>Healthcare Innovation</h3>
+            <p>Promoting patient-centered healthcare solutions, price transparency, and market competition to improve quality and affordability for all Tennesseans.</p>
+        </div>
+
+        <!-- Leadership Section -->
+        <div class="content-section">
+            <h2>Chapter Leadership <span class="coming-soon-badge">Organizing</span></h2>
+            <div class="placeholder-content">
+                <p>We're currently building our Tennessee chapter leadership team. If you're passionate about practical, market-oriented solutions for Tennessee's challenges, we want to hear from you!</p>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="content-section">
+            <h2>Events & Activities <span class="coming-soon-badge">Coming Soon</span></h2>
+            <div class="placeholder-content">
+                <p>Chapter events, town halls, and community meetings will be posted here. Stay tuned for opportunities to engage with fellow Tennesseans who share our vision for a prosperous future.</p>
+            </div>
+        </div>
+
+        <!-- Get Involved CTA -->
+        <div class="cta-section">
+            <h2>Get Involved</h2>
+            <p>Join us in building a stronger, more prosperous Tennessee through practical, market-oriented solutions.</p>
+            <a href="index.html#proposals" class="cta-button">Learn About Our Proposals</a>
+        </div>
+    </div>
+</body>
+</html>
