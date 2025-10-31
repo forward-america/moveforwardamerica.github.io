@@ -6,10 +6,88 @@
     <title>Forward Coalition - Move Forward America</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Override body styles to match main page */
+        body {
+            font-family: var(--font-family);
+            background: var(--gradient-background);
+            min-height: 100vh;
+            color: var(--color-text-primary);
+            display: block !important;
+            justify-content: initial !important;
+            align-items: initial !important;
+            padding: 0 !important;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .banner {
+            background: var(--gradient-header);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .banner p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            color: white;
+        }
+
+        .navigation-bar {
+            background: #000000;
+            border-bottom: 2px solid var(--color-border-light);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 20px;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            background: transparent;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: var(--color-bg-secondary);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .nav-link.active {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .coalition-section {
+            background: var(--gradient-background);
+            padding: 60px 0 40px 0;
+            flex: 1;
+        }
+
         .coalition-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 40px;
         }
 
         .section-header {
@@ -18,33 +96,32 @@
         }
 
         .section-header h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 20px;
-            background: var(--gradient-header);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+            font-weight: 600;
         }
 
         .section-header p {
             font-size: 1.2em;
-            color: var(--text-secondary);
-            max-width: 800px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 900px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
         .organizations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .org-card {
             background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
             border: 3px solid var(--accent-color);
             border-radius: 15px;
-            padding: 35px;
+            padding: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -65,16 +142,16 @@
             margin-bottom: 20px;
         }
 
-        .org-title h3 {
-            font-size: 1.8em;
-            margin-bottom: 8px;
+        .org-header h3 {
+            font-size: 1.9em;
+            margin-bottom: 10px;
             color: #ffffff;
             font-weight: 700;
         }
 
         .org-category {
             font-size: 1em;
-            color: var(--accent-color);
+            color: var(--color-accent);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -84,7 +161,7 @@
             color: #ffffff;
             line-height: 1.7;
             margin-bottom: 15px;
-            font-size: 1.05em;
+            font-size: 1.1em;
         }
 
         .org-details {
@@ -105,13 +182,14 @@
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
-            border-left: 3px solid var(--accent-color);
+            border-left: 3px solid var(--color-accent);
         }
 
         .org-description h4 {
-            color: var(--accent-color);
+            color: var(--color-accent);
             margin-bottom: 15px;
             font-size: 1.2em;
+            font-weight: 700;
         }
 
         .org-description p {
@@ -125,9 +203,10 @@
         }
 
         .alignment-points h4 {
-            color: var(--accent-color);
+            color: var(--color-accent);
             margin-bottom: 15px;
             font-size: 1.2em;
+            font-weight: 700;
         }
 
         .alignment-points ul {
@@ -192,14 +271,14 @@
 
         .states-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
 
         .state-card {
             background: linear-gradient(135deg, #1a2744 0%, #2a3a5a 100%);
-            border: 3px solid var(--accent-color);
+            border: 3px solid var(--color-accent);
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
@@ -211,18 +290,18 @@
         .state-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 40px rgba(194, 59, 34, 0.4);
-            border-color: #fff;
+            border-color: #ffffff;
         }
 
         .state-flag {
             width: 100%;
-            height: 200px;
+            height: 220px;
             overflow: hidden;
             background: #0a0a0a;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 3px solid var(--accent-color);
+            border-bottom: 3px solid var(--color-accent);
         }
 
         .state-flag img {
@@ -232,7 +311,7 @@
         }
 
         .state-info {
-            padding: 30px;
+            padding: 35px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -240,22 +319,26 @@
 
         .state-info h3 {
             font-size: 2em;
-            color: var(--text-primary);
+            color: #ffffff;
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .state-tagline {
-            color: var(--accent-color);
+            color: var(--color-accent);
             font-weight: 600;
             font-size: 1.1em;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .state-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
+            color: #ffffff;
+            line-height: 1.7;
             margin-bottom: 20px;
             flex: 1;
+            font-size: 1.05em;
         }
 
         .state-button {
@@ -268,6 +351,7 @@
             transition: all 0.3s ease;
             display: inline-block;
             text-align: center;
+            font-size: 1.05em;
         }
 
         .state-button:hover {
@@ -276,6 +360,28 @@
         }
 
         @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2em;
+            }
+
+            .banner p {
+                font-size: 1.1em;
+            }
+
+            .navigation-bar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+
+            .coalition-container {
+                padding: 0 20px;
+            }
+
             .organizations-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -298,44 +404,40 @@
                 padding: 25px;
             }
 
-            .org-title h3 {
+            .org-header h3 {
                 font-size: 1.5em;
             }
 
             .state-flag {
-                height: 150px;
+                height: 160px;
+            }
+
+            .state-info {
+                padding: 25px;
             }
 
             .state-info h3 {
                 font-size: 1.6em;
             }
         }
-
-        @media (max-width: 500px) {
-            .organizations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .org-card {
-                padding: 20px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Forward Coalition</h1>
-        <p>Building a Network of Partners for American Renewal</p>
-    </div>
+    <div class="page-wrapper">
+        <div class="banner">
+            <h1>Forward Coalition</h1>
+            <p>Building a Network of Partners for American Renewal</p>
+        </div>
 
-    <div class="navigation-bar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
-        <a href="march_forward.html" class="nav-link">March Forward</a>
-        <a href="coalition.html" class="nav-link active">Forward Coalition</a>
-    </div>
+        <div class="navigation-bar">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#proposals" class="nav-link">Policy Proposals</a>
+            <a href="march_forward.html" class="nav-link">March Forward</a>
+            <a href="coalition.html" class="nav-link active">Forward Coalition</a>
+        </div>
 
-    <div class="coalition-container">
+        <div class="coalition-section">
+            <div class="coalition-container">
         <!-- Partner Organizations Section -->
         <div class="section-header">
             <h1>🤝 Coalition Partners</h1>
@@ -813,6 +915,8 @@
                     <p class="state-description">Championing economic growth, individual liberty, and federalist principles in America's fastest-growing state.</p>
                     <a href="texas.html" class="state-button" onclick="event.stopPropagation()">Visit Chapter →</a>
                 </div>
+            </div>
+        </div>
             </div>
         </div>
     </div>
