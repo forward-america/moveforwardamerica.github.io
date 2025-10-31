@@ -5,7 +5,7 @@ A policy platform for American Renewal focused on market-oriented, federalist so
 
 ## Website
 
-Visit our proposals at: [moveforwardamerica.github.io](https://move-forward-america.org/)
+Visit our proposals at: [https://move-forward-america.org/](https://move-forward-america.org/)
 
 
 
