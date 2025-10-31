@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>March Forward - Project Tracker | Move Forward America</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Override body styles for landing page */
+        body {
+            font-family: var(--font-family);
+            background: var(--gradient-background);
+            min-height: 100vh;
+            color: var(--color-text-primary);
+            display: block !important;
+            justify-content: initial !important;
+            align-items: initial !important;
+            padding: 0 !important;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .banner {
+            background: var(--gradient-header);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .banner::before {
+            content: '››››';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            opacity: 0.3;
+            color: white;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .banner p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            color: white;
+        }
+
+        .home-navigation {
+            background: #000000;
+            border-bottom: 2px solid var(--color-border-light);
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .home-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--gradient-button);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+        }
+
+        .home-nav-btn:hover {
+            transform: translateX(-3px);
+            box-shadow: var(--shadow-accent);
+            border-color: var(--color-accent);
+        }
+
+        .home-nav-btn::before {
+            content: '‹';
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .home-nav-label {
+            color: var(--color-text-tertiary);
+            font-size: 0.9em;
+            margin-left: auto;
+        }
+
+        /* Kanban Board Styles */
+        .kanban-section {
+            background: var(--gradient-background);
+            padding: 60px 20px 40px 20px;
+            flex: 1;
+        }
+
+        .intro-text {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px 40px;
+            text-align: center;
+        }
+
+        .intro-text h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .intro-text p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .kanban-board {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .kanban-column {
+            background: var(--color-bg-overlay-dark);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border: 2px solid var(--color-border-medium);
+            min-height: 400px;
+        }
+
+        .kanban-column-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--color-accent);
+        }
+
+        .kanban-column-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task-count {
+            background: var(--color-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .kanban-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .task-card {
+            background: var(--gradient-card);
+            border: 2px solid var(--color-primary);
+            border-left: 5px solid var(--color-accent);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .task-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-accent);
+            transform: translateY(-3px);
+        }
+
+        .task-card.expanded {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-accent-lg);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .task-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: white;
+            line-height: 1.4;
+        }
+
+        .task-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .task-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .task-tag {
+            background: var(--color-bg-overlay-darker);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-border-medium);
+        }
+
+        .task-priority {
+            font-weight: 600;
+        }
+
+        .task-priority.high {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .task-priority.medium {
+            color: #ffd93d;
+            border-color: #ffd93d;
+        }
+
+        .task-priority.low {
+            color: #6bcf7f;
+            border-color: #6bcf7f;
+        }
+
+        .task-description {
+            color: var(--color-text-secondary);
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .task-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            margin-top: 15px;
+            padding-top: 0;
+        }
+
+        .task-card.expanded .task-details {
+            max-height: 800px;
+            transition: max-height 0.4s ease-in;
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border-medium);
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+        }
+
+        .detail-section h4 {
+            color: var(--color-accent);
+            font-size: 1em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .detail-section li {
+            padding: 4px 0;
+            color: var(--color-text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .detail-section li::before {
+            content: '▸ ';
+            color: var(--color-accent);
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .expand-indicator {
+            text-align: center;
+            color: var(--color-text-tertiary);
+            font-size: 0.85em;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .task-card.expanded .expand-indicator::after {
+            content: ' ▲';
+        }
+
+        .task-card:not(.expanded) .expand-indicator::after {
+            content: ' ▼';
+        }
+
+        /* Status-specific column colors */
+        .status-planning .kanban-column-header {
+            border-bottom-color: #6bcf7f;
+        }
+
+        .status-planning .task-card {
+            border-left-color: #6bcf7f;
+        }
+
+        .status-inprogress .kanban-column-header {
+            border-bottom-color: #ffd93d;
+        }
+
+        .status-inprogress .task-card {
+            border-left-color: #ffd93d;
+        }
+
+        .status-review .kanban-column-header {
+            border-bottom-color: #4a90e2;
+        }
+
+        .status-review .task-card {
+            border-left-color: #4a90e2;
+        }
+
+        .status-completed .kanban-column-header {
+            border-bottom-color: var(--color-accent);
+        }
+
+        .status-completed .task-card {
+            border-left-color: var(--color-accent);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-bg-overlay-darker);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            border-top: 2px solid var(--color-primary);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: var(--color-text-tertiary);
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .kanban-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .banner h1 {
+                font-size: 2em;
+            }
+
+            .banner p {
+                font-size: 1.1em;
+            }
+
+            .banner::before {
+                display: none;
+            }
+
+            .intro-text h2 {
+                font-size: 1.8em;
+            }
+
+            .intro-text p {
+                font-size: 1.1em;
+            }
+
+            .kanban-board {
+                grid-template-columns: 1fr;
+            }
+
+            .kanban-section {
+                padding: 40px 10px 20px 10px;
+            }
+
+            .task-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 1.6em;
+            }
+
+            .banner p {
+                font-size: 1em;
+            }
+
+            .intro-text h2 {
+                font-size: 1.5em;
+            }
+
+            .intro-text p {
+                font-size: 1em;
+            }
+
+            .kanban-column {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Move Forward America Banner -->
+        <div class="banner">
+            <h1>MARCH FORWARD</h1>
+            <p>Tracking Progress on America's Renewal</p>
+        </div>
+
+        <!-- Home Navigation -->
+        <div class="home-navigation">
+            <a href="index.html" class="home-nav-btn">Back to Home</a>
+            <span class="home-nav-label">Policy Implementation Tracker</span>
+        </div>
+
+        <!-- Kanban Board Section -->
+        <div class="kanban-section">
+            <div class="intro-text">
+                <h2>Our Action Plan</h2>
+                <p>From proposal to reality. Track the progress of initiatives advancing each of our five core policy reforms.</p>
+            </div>
+
+            <div class="kanban-board">
+                <!-- Planning Column -->
+                <div class="kanban-column status-planning">
+                    <div class="kanban-column-header">
+                        <div class="kanban-column-title">
+                            📋 Planning
+                        </div>
+                        <span class="task-count" id="planning-count">0</span>
+                    </div>
+                    <div class="kanban-cards" id="planning-cards">
+                        <!-- Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="kanban-column status-inprogress">
+                    <div class="kanban-column-header">
+                        <div class="kanban-column-title">
+                            🚀 In Progress
+                        </div>
+                        <span class="task-count" id="inprogress-count">0</span>
+                    </div>
+                    <div class="kanban-cards" id="inprogress-cards">
+                        <!-- Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Under Review Column -->
+                <div class="kanban-column status-review">
+                    <div class="kanban-column-header">
+                        <div class="kanban-column-title">
+                            🔍 Review
+                        </div>
+                        <span class="task-count" id="review-count">0</span>
+                    </div>
+                    <div class="kanban-cards" id="review-cards">
+                        <!-- Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Completed Column -->
+                <div class="kanban-column status-completed">
+                    <div class="kanban-column-header">
+                        <div class="kanban-column-title">
+                            ✅ Completed
+                        </div>
+                        <span class="task-count" id="completed-count">0</span>
+                    </div>
+                    <div class="kanban-cards" id="completed-cards">
+                        <!-- Cards will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Move Forward America</strong></p>
+            <p>A national advocacy organization for the Age of American Renewal</p>
+        </div>
+    </div>
+
+    <script>
+        // Task data structure
+        const tasks = [
+            // AHSA Tasks
+            {
+                id: 1,
+                title: "Draft AHSA Legislative Framework",
+                icon: "🏥",
+                proposal: "AHSA",
+                status: "inprogress",
+                priority: "high",
+                description: "Create comprehensive legislative text for the American Health Security Act three-layer protection system.",
+                details: {
+                    objectives: [
+                        "Draft statutory language for HSA expansion and cash benefit distribution",
+                        "Define age-based maximum out-of-pocket thresholds",
+                        "Establish catastrophic coverage trigger mechanisms",
+                        "Create state implementation guidelines"
+                    ],
+                    stakeholders: ["Congressional allies", "Healthcare policy experts", "State health departments"],
+                    timeline: "Q2 2025"
+                }
+            },
+            {
+                id: 2,
+                title: "Build Coalition with Provider Groups",
+                icon: "🏥",
+                proposal: "AHSA",
+                status: "planning",
+                priority: "high",
+                description: "Engage medical associations and provider networks to support market-based healthcare security.",
+                details: {
+                    objectives: [
+                        "Meet with AMA and regional medical societies",
+                        "Address physician concerns about reimbursement structures",
+                        "Highlight administrative burden reduction benefits",
+                        "Secure endorsements from 10+ major provider organizations"
+                    ],
+                    stakeholders: ["AMA", "Hospital associations", "Specialty medical societies"],
+                    timeline: "Q3 2025"
+                }
+            },
+            {
+                id: 3,
+                title: "State Pilot Program Design",
+                icon: "🏥",
+                proposal: "AHSA",
+                status: "planning",
+                priority: "medium",
+                description: "Design 3-state pilot program to demonstrate AHSA implementation and cost savings.",
+                details: {
+                    objectives: [
+                        "Identify willing state partners with diverse demographics",
+                        "Create implementation playbook and technical assistance",
+                        "Establish metrics for measuring medical bankruptcy reduction",
+                        "Design federal-state funding partnership model"
+                    ],
+                    stakeholders: ["State governors", "Insurance commissioners", "CMS administrators"],
+                    timeline: "Q4 2025"
+                }
+            },
+
+            // AOA Tasks
+            {
+                id: 4,
+                title: "Launch Opportunity Accounts Calculator",
+                icon: "🎓",
+                proposal: "AOA",
+                status: "review",
+                priority: "medium",
+                description: "Build and deploy interactive calculator showing projected Opportunity Account balances by age 20.",
+                details: {
+                    objectives: [
+                        "Develop web-based calculator with income and contribution variables",
+                        "Show compound growth visualization from birth to age 20",
+                        "Include Second Chance lottery probability analysis",
+                        "Create shareable results for social media advocacy"
+                    ],
+                    stakeholders: ["Web development team", "Financial modeling experts", "Communications staff"],
+                    timeline: "Q1 2025"
+                }
+            },
+            {
+                id: 5,
+                title: "National University Site Selection Study",
+                icon: "🎓",
+                proposal: "AOA",
+                status: "inprogress",
+                priority: "high",
+                description: "Research and identify optimal locations for first 10 National Universities in underserved regions.",
+                details: {
+                    objectives: [
+                        "Analyze demographic data for education deserts",
+                        "Evaluate existing infrastructure and land availability",
+                        "Assess regional economic development potential",
+                        "Engage with local chambers of commerce and mayors"
+                    ],
+                    stakeholders: ["Urban planners", "Education researchers", "Regional economic development agencies"],
+                    timeline: "Q2 2025"
+                }
+            },
+            {
+                id: 6,
+                title: "Child Development Bond Marketing Campaign",
+                icon: "🎓",
+                proposal: "AOA",
+                status: "completed",
+                priority: "medium",
+                description: "Launch national awareness campaign explaining $10K birth grant and compound growth benefits.",
+                details: {
+                    objectives: [
+                        "Develop messaging around breaking hereditary poverty cycles",
+                        "Create video content featuring families discussing impact",
+                        "Partner with parenting and family advocacy organizations",
+                        "Target outreach to expectant parents and pediatricians"
+                    ],
+                    stakeholders: ["Marketing agency", "Family advocacy groups", "Social media influencers"],
+                    timeline: "Completed Q4 2024"
+                }
+            },
+
+            // APA Tasks
+            {
+                id: 7,
+                title: "Simplify Tax Code Educational Series",
+                icon: "💰",
+                proposal: "APA",
+                status: "inprogress",
+                priority: "medium",
+                description: "Produce video series showing how 15% flat tax eliminates complexity for 99% of Americans.",
+                details: {
+                    objectives: [
+                        "Create 5-minute explainer on filing taxes without accountant",
+                        "Demonstrate savings calculator for typical families",
+                        "Compare current 75,000-page code vs. simplified system",
+                        "Feature testimonials from small business owners"
+                    ],
+                    stakeholders: ["Video production team", "Tax policy experts", "Small business associations"],
+                    timeline: "Q2 2025"
+                }
+            },
+            {
+                id: 8,
+                title: "Financial Transaction Tax Model",
+                icon: "💰",
+                proposal: "APA",
+                status: "review",
+                priority: "high",
+                description: "Build economic model demonstrating Wall Street speculation tax revenue and market stability effects.",
+                details: {
+                    objectives: [
+                        "Quantify revenue from 2.5-5% transaction tax on derivatives",
+                        "Model impact on high-frequency trading volumes",
+                        "Demonstrate reduced market volatility benefits",
+                        "Address concerns about pension fund impacts"
+                    ],
+                    stakeholders: ["Economists", "Market analysts", "Financial industry critics"],
+                    timeline: "Q1 2025"
+                }
+            },
+            {
+                id: 9,
+                title: "Small Business Tax Relief Outreach",
+                icon: "💰",
+                proposal: "APA",
+                status: "planning",
+                priority: "medium",
+                description: "Engage small business community to showcase 0-5% effective tax rate benefits.",
+                details: {
+                    objectives: [
+                        "Present to chambers of commerce in 25 cities",
+                        "Create case studies of businesses under $5M revenue",
+                        "Highlight administrative cost savings from simplified filing",
+                        "Build endorsements from Main Street business coalitions"
+                    ],
+                    stakeholders: ["NFIB", "Local chambers", "Small business owners"],
+                    timeline: "Q3 2025"
+                }
+            },
+
+            // Homestead Tasks
+            {
+                id: 10,
+                title: "Land Acquisition for New Communities",
+                icon: "🏡",
+                proposal: "Homestead",
+                status: "planning",
+                priority: "high",
+                description: "Identify and secure federal/state land for 10-15M new homes near university towns.",
+                details: {
+                    objectives: [
+                        "Survey federal land inventory within 30 miles of universities",
+                        "Negotiate state land grants for development",
+                        "Ensure environmental compliance and zoning approvals",
+                        "Create master planning guidelines for walkable communities"
+                    ],
+                    stakeholders: ["BLM", "State land offices", "University administrators", "Urban planners"],
+                    timeline: "Q3 2025"
+                }
+            },
+            {
+                id: 11,
+                title: "Equity Partnership Structure Design",
+                icon: "🏡",
+                proposal: "Homestead",
+                status: "inprogress",
+                priority: "high",
+                description: "Develop legal framework for shared equity model giving buyers upside while managing risk.",
+                details: {
+                    objectives: [
+                        "Draft standard equity partnership agreements",
+                        "Define buyout terms and appreciation sharing formulas",
+                        "Create default protection mechanisms",
+                        "Establish secondary market for government equity stakes"
+                    ],
+                    stakeholders: ["Real estate attorneys", "HUD officials", "Mortgage industry experts"],
+                    timeline: "Q2 2025"
+                }
+            },
+            {
+                id: 12,
+                title: "Wall Street Tax Advantage Elimination Bill",
+                icon: "🏡",
+                proposal: "Homestead",
+                status: "review",
+                priority: "high",
+                description: "Draft legislation to remove corporate investor tax benefits on single-family home ownership.",
+                details: {
+                    objectives: [
+                        "Eliminate depreciation deductions for corporate-owned SFH",
+                        "Remove 1031 exchange eligibility for residential investors",
+                        "Phase in capital gains treatment parity with individuals",
+                        "Prevent Wall Street from outbidding families at auctions"
+                    ],
+                    stakeholders: ["Congressional tax committees", "Housing advocacy groups", "Real estate economists"],
+                    timeline: "Q1 2025"
+                }
+            },
+
+            // ARA Tasks
+            {
+                id: 13,
+                title: "Constitutional Amendment Draft Campaign",
+                icon: "⚖️",
+                proposal: "ARA",
+                status: "inprogress",
+                priority: "high",
+                description: "Finalize American Renewal Amendment text and begin state ratification education campaign.",
+                details: {
+                    objectives: [
+                        "Refine unicameral Senate and Supreme Court reform language",
+                        "Build grassroots support in 38+ states needed for ratification",
+                        "Create educational materials on federalism restoration",
+                        "Engage constitutional law scholars for credibility"
+                    ],
+                    stakeholders: ["Constitutional scholars", "State legislators", "Grassroots movements"],
+                    timeline: "Q4 2025"
+                }
+            },
+            {
+                id: 14,
+                title: "Fiscal Responsibility Enforcement Mechanism",
+                icon: "⚖️",
+                proposal: "ARA",
+                status: "planning",
+                priority: "medium",
+                description: "Design automatic enforcement of 20% GDP spending cap and 100% debt ceiling.",
+                details: {
+                    objectives: [
+                        "Create sequestration formulas for exceeding spending cap",
+                        "Establish debt reduction triggers and timelines",
+                        "Define emergency override procedures (supermajority + referendum)",
+                        "Build projections showing path to fiscal sustainability"
+                    ],
+                    stakeholders: ["Budget economists", "CBO analysts", "Fiscal policy think tanks"],
+                    timeline: "Q3 2025"
+                }
+            },
+            {
+                id: 15,
+                title: "Term Limits Implementation Study",
+                icon: "⚖️",
+                proposal: "ARA",
+                status: "completed",
+                priority: "low",
+                description: "Research best practices for 18-year term limits across all federal offices.",
+                details: {
+                    objectives: [
+                        "Analyze state-level term limit experiences",
+                        "Model transition scenarios from current officeholders",
+                        "Address concerns about institutional knowledge loss",
+                        "Document benefits of reducing careerism and corruption"
+                    ],
+                    stakeholders: ["Political scientists", "Government reform advocates", "Former legislators"],
+                    timeline: "Completed Q4 2024"
+                }
+            },
+
+            // Cross-cutting Tasks
+            {
+                id: 16,
+                title: "Build State Policy Laboratory Network",
+                icon: "🔬",
+                proposal: "Cross-cutting",
+                status: "planning",
+                priority: "medium",
+                description: "Create network of state legislators willing to pilot test Move Forward America policies.",
+                details: {
+                    objectives: [
+                        "Recruit champions in 15+ states across political spectrum",
+                        "Provide model legislation and technical assistance",
+                        "Share best practices from early adopter states",
+                        "Track outcomes and iterate based on real-world data"
+                    ],
+                    stakeholders: ["State legislators", "Policy think tanks", "Advocacy coordinators"],
+                    timeline: "Q2 2025"
+                }
+            },
+            {
+                id: 17,
+                title: "Coalition Building with Post-Partisan Leaders",
+                icon: "🤝",
+                proposal: "Cross-cutting",
+                status: "inprogress",
+                priority: "high",
+                description: "Recruit bipartisan coalition of elected officials, business leaders, and advocates.",
+                details: {
+                    objectives: [
+                        "Identify candidates who prioritize pragmatism over ideology",
+                        "Host roundtables in swing districts and purple states",
+                        "Secure public endorsements from 50+ influential voices",
+                        "Create Forward Coalition caucus in Congress"
+                    ],
+                    stakeholders: ["Moderate politicians", "Business roundtables", "Good government groups"],
+                    timeline: "Q3 2025"
+                }
+            },
+            {
+                id: 18,
+                title: "Economic Impact Analysis Publication",
+                icon: "📊",
+                proposal: "Cross-cutting",
+                status: "review",
+                priority: "high",
+                description: "Commission comprehensive study on combined economic effects of all five policy proposals.",
+                details: {
+                    objectives: [
+                        "Model GDP growth impact over 10-year horizon",
+                        "Calculate deficit reduction from spending reforms and new revenue",
+                        "Project job creation in construction, education, healthcare sectors",
+                        "Publish peer-reviewed findings in top economics journals"
+                    ],
+                    stakeholders: ["Academic economists", "Think tanks", "CBO/JCT"],
+                    timeline: "Q1 2025"
+                }
+            }
+        ];
+
+        // Render tasks to kanban board
+        function renderTasks() {
+            const columns = {
+                planning: document.getElementById('planning-cards'),
+                inprogress: document.getElementById('inprogress-cards'),
+                review: document.getElementById('review-cards'),
+                completed: document.getElementById('completed-cards')
+            };
+
+            // Clear columns
+            Object.values(columns).forEach(col => col.innerHTML = '');
+
+            // Count tasks per status
+            const counts = { planning: 0, inprogress: 0, review: 0, completed: 0 };
+
+            // Render each task
+            tasks.forEach(task => {
+                counts[task.status]++;
+                const card = createTaskCard(task);
+                columns[task.status].appendChild(card);
+            });
+
+            // Update counts
+            document.getElementById('planning-count').textContent = counts.planning;
+            document.getElementById('inprogress-count').textContent = counts.inprogress;
+            document.getElementById('review-count').textContent = counts.review;
+            document.getElementById('completed-count').textContent = counts.completed;
+        }
+
+        // Create task card HTML element
+        function createTaskCard(task) {
+            const card = document.createElement('div');
+            card.className = 'task-card';
+            card.setAttribute('data-task-id', task.id);
+
+            const detailsHTML = task.details ? `
+                <div class="task-details">
+                    <div class="detail-section">
+                        <h4>Key Objectives</h4>
+                        <ul>
+                            ${task.details.objectives.map(obj => `<li>${obj}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Key Stakeholders</h4>
+                        <ul>
+                            ${task.details.stakeholders.map(sh => `<li>${sh}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Timeline</h4>
+                        <ul>
+                            <li>${task.details.timeline}</li>
+                        </ul>
+                    </div>
+                </div>
+            ` : '';
+
+            card.innerHTML = `
+                <div class="task-header">
+                    <div class="task-title">${task.title}</div>
+                    <div class="task-icon">${task.icon}</div>
+                </div>
+                <div class="task-meta">
+                    <span class="task-tag">${task.proposal}</span>
+                    <span class="task-tag task-priority ${task.priority}">${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</span>
+                </div>
+                <div class="task-description">${task.description}</div>
+                ${detailsHTML}
+                <div class="expand-indicator">Click for details</div>
+            `;
+
+            // Add click handler to expand/collapse
+            card.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+
+            return card;
+        }
+
+        // Initialize board on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTasks();
+        });
+    </script>
+</body>
+</html>
