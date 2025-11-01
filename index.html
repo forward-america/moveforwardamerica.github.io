@@ -341,6 +341,58 @@
             margin: var(--spacing-sm) 0;
         }
 
+        /* Hero Banner SVG Styling */
+        .banner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .banner-flag {
+            width: 180px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .banner-flag:hover {
+            transform: scale(1.05);
+        }
+
+        .banner-text {
+            text-align: center;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .learn-more-btn {
+            background: white;
+            color: var(--color-accent);
+            padding: 12px 30px;
+            border-radius: var(--radius-xxl);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all var(--transition-fast);
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .learn-more-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+            background: var(--color-accent);
+            color: white;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .banner h1 {
@@ -353,6 +405,21 @@
 
             .banner::before {
                 display: none;
+            }
+
+            .banner-flag {
+                width: 140px;
+            }
+
+            .banner-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .learn-more-btn {
+                width: 100%;
+                text-align: center;
             }
 
             .navigation-bar {
@@ -458,9 +525,17 @@
     <div class="page-wrapper">
         <!-- Move Forward America Banner -->
         <div class="banner">
-            <h1>MOVE FORWARD AMERICA</h1>
-            <p>A New Vision for American Renewal</p>
-            <p class="tagline">Market-Based Solutions. Original Principles. State Empowerment.</p>
+            <div class="banner-content">
+                <img src="move-forward-america.svg" alt="Move Forward America Flag" class="banner-flag">
+                <div class="banner-text">
+                    <h1>MOVE FORWARD AMERICA</h1>
+                    <p>A New Vision for American Renewal</p>
+                    <p class="tagline">Market-Based Solutions. Original Principles. State Empowerment.</p>
+                </div>
+                <div class="banner-buttons">
+                    <a href="learn-more.html" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
         </div>
 
         <!-- Navigation Bar -->
