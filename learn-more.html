@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>America Doesn't Need to Decline - Move Forward America</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: var(--font-family);
+            background: var(--gradient-background);
+            min-height: 100vh;
+            color: var(--color-text-primary);
+            display: block !important;
+            justify-content: initial !important;
+            align-items: initial !important;
+            padding: 0 !important;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-header);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '››››';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4em;
+            opacity: 0.2;
+            color: white;
+        }
+
+        .hero-flag {
+            width: 150px;
+            height: auto;
+            margin: 0 auto 30px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+        }
+
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .hero-section h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-top: 20px;
+            font-style: italic;
+            border: none;
+            display: block;
+        }
+
+        /* Navigation */
+        .top-nav {
+            background: #000000;
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--color-border-light);
+            text-align: center;
+        }
+
+        .nav-home-btn {
+            display: inline-block;
+            background: var(--gradient-button);
+            color: white;
+            padding: 10px 25px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-home-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-accent);
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .content-section.dark {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .content-section.highlight {
+            background: var(--gradient-header);
+            padding: 60px 40px;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .section-divider {
+            border: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+            margin: 40px 0;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-accent);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: var(--color-accent);
+            margin: 40px 0 20px 0;
+        }
+
+        .content-section p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .content-section strong {
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Agenda List */
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .agenda-list li {
+            background: var(--color-bg-card);
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 5px solid var(--color-accent);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .agenda-list li:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-accent);
+        }
+
+        .agenda-list strong:first-child {
+            color: var(--color-accent);
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Choice Paths */
+        .choice-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .choice-card {
+            background: var(--color-bg-card);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--color-border-medium);
+            transition: all var(--transition-fast);
+        }
+
+        .choice-card.decline {
+            border-color: var(--color-error);
+        }
+
+        .choice-card.renewal {
+            border-color: var(--color-success);
+        }
+
+        .choice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .choice-card h3 {
+            margin-top: 0;
+        }
+
+        /* Call to Action Boxes */
+        .cta-box {
+            background: var(--gradient-header);
+            padding: 50px 40px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-box h2 {
+            color: white;
+            border: none;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            font-size: 1.3em;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .action-btn {
+            background: white;
+            color: var(--color-accent);
+            padding: 15px 35px;
+            border-radius: var(--radius-xxl);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all var(--transition-fast);
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+            background: var(--color-accent);
+            color: white;
+        }
+
+        /* Footer */
+        .footer-section {
+            background: var(--color-bg-overlay-darker);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid var(--color-primary);
+        }
+
+        .footer-section p {
+            color: var(--color-text-tertiary);
+            margin: 10px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.2em;
+            }
+
+            .hero-section h2 {
+                font-size: 1.8em;
+            }
+
+            .hero-section::before {
+                display: none;
+            }
+
+            .content-section {
+                padding: 40px 20px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            h3 {
+                font-size: 1.5em;
+            }
+
+            .content-section p {
+                font-size: 1.1em;
+            }
+
+            .choice-paths {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .content-section p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <a href="index.html" class="nav-home-btn">← Back to Home</a>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <img src="move-forward-america.svg" alt="Move Forward America Flag" class="hero-flag">
+            <h1>America Doesn't Need to Decline</h1>
+            <h2>It Needs Renewal</h2>
+        </div>
+
+        <!-- The American Promise -->
+        <div class="content-section">
+            <p><strong>Each generation is supposed to do better than the last. That's the American promise.</strong></p>
+
+            <p>But right now, young Americans face higher costs, lower wages, crushing debt, and unaffordable housing. They're delaying families—or giving up on them entirely. Our birth rate has fallen below replacement level. The dream of building a better life through hard work is slipping away.</p>
+
+            <p><strong>This isn't inevitable. It's a choice.</strong></p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Truth About Crisis and Recovery -->
+        <div class="content-section dark">
+            <h2>The Truth About Crisis and Recovery</h2>
+
+            <p>History teaches us something powerful: <strong>nations recover from astonishing crises when they make bold choices at critical moments.</strong></p>
+
+            <p>Germany rose from the ruins of 1945 to become Europe's economic powerhouse. America transformed Depression-era collapse into post-war prosperity. South Korea went from post-war devastation to advanced economy in a single generation.</p>
+
+            <p><strong>What these recoveries share:</strong> Not luck, but the courage to implement comprehensive structural reforms when crisis created political possibility.</p>
+
+            <p><strong>America has extraordinary advantages</strong> other nations lack—productive capacity, natural resources, geographic security, entrepreneurial culture, and decentralized governance. The material foundation for prosperity exists.</p>
+
+            <p><strong>The question is whether we'll implement the reforms necessary for renewal, or accept managed decline.</strong></p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- American Renewal Agenda -->
+        <div class="content-section">
+            <h2>Our Vision: The American Renewal Agenda</h2>
+
+            <p><strong>Five integrated reforms that restore opportunity from birth through retirement:</strong></p>
+
+            <ul class="agenda-list">
+                <li>
+                    <strong>Affordable Housing</strong>
+                    Build 60-80 new communities where families can buy homes, not rent forever. Enable 10-15 million families to build generational wealth.
+                </li>
+
+                <li>
+                    <strong>Debt-Free Education</strong>
+                    Create 60-80 National Universities with job-linked repayment. Eliminate the $1.77 trillion student debt trap crushing young Americans.
+                </li>
+
+                <li>
+                    <strong>Economic Freedom</strong>
+                    Simplify 75,000 pages of tax code to rates you can write on a napkin. Reward work over speculation. Free businesses from healthcare burden.
+                </li>
+
+                <li>
+                    <strong>Healthcare Security</strong>
+                    Provide catastrophic coverage for all Americans. End job lock. Enable risk-taking, career transitions, and entrepreneurship.
+                </li>
+
+                <li>
+                    <strong>Functional Government</strong>
+                    Cap spending at 20% of GDP. Limit debt to 100% of GDP. Require supermajority consensus for federal action. Restore fiscal discipline and democratic accountability.
+                </li>
+            </ul>
+
+            <p><strong>This is market-oriented reform grounded in constitutional principles.</strong> Limited government. Free enterprise. Fiscal responsibility. States' rights. Individual liberty.</p>
+
+            <p><strong>This is how we restore the promise that made America exceptional:</strong> Anyone willing to work can build a better life.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Why Now -->
+        <div class="content-section dark">
+            <h2>Why Now? Why This Approach?</h2>
+
+            <p><strong>America is heading toward fiscal crisis.</strong> $36 trillion in debt, growing by $2 trillion annually, with no political will to change course. By the early 2030s, crisis will force adjustment—the only question is whether we do it strategically or chaotically.</p>
+
+            <p><strong>We're building the foundation now.</strong></p>
+
+            <p>When crisis comes, there will be desperate demand for solutions. Political windows will open that are closed today. The impossible will become possible.</p>
+
+            <p><strong>But only if the intellectual infrastructure exists.</strong> Only if state-level organizations are ready. Only if proven policy frameworks are available. Only if we've built proof-of-concept in model states.</p>
+
+            <p><strong>That's our work:</strong> Building capacity so that when the moment comes, we're ready to execute renewal—not just survive collapse.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Strategy -->
+        <div class="content-section">
+            <h2>Our Strategy: Patient, Pragmatic, Proven</h2>
+
+            <p>We're not waiting for permission from Washington. <strong>We're building state by state.</strong></p>
+
+            <p><strong>First:</strong> Win state-level reforms that prove the model works—tax simplification, fiscal discipline, healthcare innovation, education reform.</p>
+
+            <p><strong>Then:</strong> Expand to comprehensive packages in 8-10 model states, generating data that shows superior outcomes.</p>
+
+            <p><strong>Finally:</strong> When federal crisis creates opportunity, we have the infrastructure, proof points, and political capacity to implement national renewal.</p>
+
+            <p><strong>We take wins along the way.</strong> Every state that reforms is a victory. Every proof point built is progress. Every candidate elected is momentum.</p>
+
+            <p>This is a long game—but it's the only game that wins.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- The Choice -->
+        <div class="content-section dark">
+            <h2>The Choice Before Us</h2>
+
+            <div class="choice-paths">
+                <div class="choice-card decline">
+                    <h3>Path One: Managed Decline</h3>
+                    <p>Continue current trajectory. Let crises compound. Accept that each generation will be poorer than the last. Watch the American Dream die slowly.</p>
+                </div>
+
+                <div class="choice-card renewal">
+                    <h3>Path Two: Strategic Renewal</h3>
+                    <p>Implement structural reforms that restore opportunity. Rebuild the middle class. Reverse demographic collapse. Renew American prosperity through market-based solutions and constitutional governance.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 1.5em; margin-top: 40px;"><strong>We choose renewal.</strong></p>
+        </div>
+
+        <!-- Join the Movement -->
+        <div class="content-section highlight">
+            <div class="cta-box" style="background: rgba(0,0,0,0.3); margin: 0;">
+                <h2>Join the Movement</h2>
+
+                <p><strong>Move Forward America is a decentralized network of state-level organizations advancing market-oriented reform across the country.</strong></p>
+
+                <p>We support candidates who believe in limited government, free enterprise, fiscal responsibility, and bold solutions to systemic problems.</p>
+
+                <p>We build state-level infrastructure that will be ready when national crisis creates the moment for comprehensive reform.</p>
+
+                <p>We believe America's greatest days don't have to be behind us—if we're willing to do the hard work of renewal.</p>
+
+                <p><strong>The lights won't go out everywhere at once. But the system will need fundamental restructuring.</strong></p>
+
+                <p><strong>We're preparing for that reconstruction.</strong></p>
+            </div>
+        </div>
+
+        <!-- Final Call to Action -->
+        <div class="content-section">
+            <div style="text-align: center; margin: 60px 0;">
+                <p style="font-size: 1.5em; margin-bottom: 20px;"><strong>Because America is worth fighting for.</strong></p>
+
+                <p style="font-size: 1.5em; margin-bottom: 20px;"><strong>Because our children deserve better than inheriting decline.</strong></p>
+
+                <p style="font-size: 1.5em; margin-bottom: 40px;"><strong>Because renewal is possible—if we build for it.</strong></p>
+
+                <hr class="section-divider">
+
+                <h2>Move Forward America</h2>
+                <p style="font-style: italic; font-size: 1.3em; margin-bottom: 40px;">Building the foundation for American renewal.</p>
+
+                <div class="action-buttons">
+                    <a href="index.html#proposals" class="action-btn">Learn About Our Policies</a>
+                    <a href="coalition.html" class="action-btn">Find Your State Chapter</a>
+                    <a href="march_forward.html" class="action-btn">Get Involved</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <p><strong>Move Forward America</strong></p>
+            <p>A national advocacy organization for the Age of American Renewal</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">These proposals are works in progress. We welcome feedback, critique, and improvement.</p>
+        </div>
+    </div>
+</body>
+</html>
