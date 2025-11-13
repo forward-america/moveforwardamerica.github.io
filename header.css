@@ -1,0 +1,101 @@
+/**
+ * Greeting Header Styles
+ * Matches the site's existing design patterns
+ */
+
+.greeting-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #c23b22 100%);
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+.greeting-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.greeting-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.greeting-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    flex: 1;
+}
+
+.set-name-btn,
+.change-name-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+}
+
+.set-name-btn:hover,
+.change-name-btn:hover {
+    background-color: white;
+    color: #1e3a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.set-name-btn:active,
+.change-name-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .greeting-header {
+        padding: 1rem 0;
+    }
+
+    .greeting-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .greeting-text {
+        font-size: 1.5rem;
+    }
+
+    .set-name-btn,
+    .change-name-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .greeting-container {
+        padding: 0 1rem;
+    }
+
+    .greeting-text {
+        font-size: 1.25rem;
+    }
+
+    .set-name-btn,
+    .change-name-btn {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
